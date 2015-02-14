@@ -6,38 +6,22 @@ import java.util.*;
  *
  */
 public class Project1 {
-
-
 	
-	static List<Integer> intAl = new ArrayList<Integer>();
-	
-	private int scoreSum = 0;
-		
 	/**
-	 * @return the scoreSum
-	 */
-	public int getScoreSum() {
-		return scoreSum;
-	}
-
-	/**
-	 * @param scoreSum the scoreSum to set
-	 */
-	public void setScoreSum(int scoreSum) {
-		this.scoreSum = scoreSum + this.scoreSum;
-	}
-
-	/**
+	 * Main class.
+	 * 
 	 * @param args
 	 */	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		ArrayList<Integer> intAl = new ArrayList<Integer>();
+		
 		Driver driv = new Driver();
 		
 		Driver.readFile(intAl);
 		
-		printArrayList();
+		printArrayList(intAl);
 		
 
 	}
@@ -47,27 +31,22 @@ public class Project1 {
 	 * 
 	 * @param args
 	 */
-	public static void printArrayList(){
+	private static void printArrayList(ArrayList<Integer> intAl){
 		
 		System.out.println("\nPrinting contents of ArrayList:\n");
 		
 		Iterator<Integer> it = intAl.iterator();
 		while (it.hasNext()){
-
-			System.out.println(it.next().toString());
-			
+			System.out.println(it.next().toString());			
 		}
-		
-
-
 	}
 
 }
 
 /**
- * Reads data from text file and stores into an ArrayList
+ * Reads data from text file and stores into an ArrayList.
  * 
- * @param args
+ * @param intAl an ArrayList<Integer> of scores
  */
 class Driver {
 	
@@ -108,6 +87,8 @@ class Driver {
 		}
 		
 		System.out.println("\nNumber of ArrayList elements: " + intAl.size());
+		
+		System.out.println("\nSum: " + sum);
 	
 		
 	}
