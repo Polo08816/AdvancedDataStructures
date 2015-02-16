@@ -50,7 +50,7 @@ public class Project1 {
 	/**
 	 * Prints values in ArrayList.
 	 * 
-	 * @param args
+	 * @param intAl ArrayList of Integers
 	 */
 	private static void printArrayList(ArrayList<Integer> intAl){
 		
@@ -76,7 +76,8 @@ class Driver {
 	 * performs summation of all scores read.  
 	 * Error handling for this function includes FileNotFound and general IOExcetions.
 	 * 
-	 * @param intAl an ArrayList<Integer> of scores
+	 * @param intAl an ArrayList of Integers of scores
+	 * @return sum Sum of all scores in ArrayList
 	 */
 	public int readFile(ArrayList<Integer> intAl){
 	
@@ -130,9 +131,9 @@ class AssignScore {
 	/**
 	 * Assigns scores (Outstanding, Satisfactory, and Unsatisfactory) to all individual scores based on average.
 	 * 
-	 * @param intAl ArrayList<Integer> of scores
+	 * @param intAl ArrayList of Integers of scores
 	 * @param sum sum of all scores
-	 * @throws IOException 
+	 * @throws IOException Error with BufferedWriter
 	 */
 	public void assignScore(ArrayList<Integer> intAl, int sum) throws IOException{
 		
