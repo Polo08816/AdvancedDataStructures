@@ -105,9 +105,9 @@ class Driver {
 					try {
 						tempInt = Integer.parseInt(st.nextToken());
 					} catch (NumberFormatException h){
-//						System.out.println("\n" + inputFileName + ": Attempted to parse: " + st.toString());
 						System.out.println("\nWarning: Not all elements were able to be parsed correctly.\nAll elements are expected to be integers.  \nCheck the delimiters used in input file.\n");
 						h.printStackTrace();
+//						System.out.println("\n" + inputFileName + ": Attempted to parse: " + st.toString());
 						continue;
 					}
 					
@@ -158,7 +158,7 @@ class AssignScore {
 		double average = (double)sum/(intAl.size());
 		System.out.println("\nAverage is: " + average + "\n");
 		
-		//range defintions of scores.
+		//range definitions of scores.
 		double outstanding = average * 1.10;
 		System.out.println("\nOutstanding is: > " + outstanding);
 		System.out.println("Average/Satisfactory is: " + average);
