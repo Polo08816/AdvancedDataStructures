@@ -107,6 +107,7 @@ class Driver {
 					} catch (NumberFormatException h){
 //						System.out.println("\n" + inputFileName + ": Attempted to parse: " + st.toString());
 						System.out.println("\nWarning: Not all elements were able to be parsed correctly.\nAll elements are expected to be integers.  \nCheck the delimiters used in input file.\n");
+						h.printStackTrace();
 						continue;
 					}
 					
