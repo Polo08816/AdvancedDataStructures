@@ -19,8 +19,7 @@ public class Project1 {
 		ArrayList<Integer> intAl = new ArrayList<Integer>();
 		
 		//Constructs Driver object to handle File reading
-		Driver driv = new Driver();
-		
+		Driver driv = new Driver();		
 		
 		int sum = driv.readFile(intAl);
 		
@@ -101,12 +100,21 @@ class Driver {
 			while (line != null){
 				st = new StringTokenizer(line);
 				while (st.hasMoreTokens()){
-					int tempInt = Integer.parseInt(st.nextToken());
+					int tempInt = 0;
+					try {
+						tempInt = Integer.parseInt(st.nextToken());
+					} catch (NumberFormatException h){
+//						System.out.println("\n" + inputFileName + ": Attempted to parse: " + st.toString());
+						System.out.println("\nWarning: Not all elements were able to be parsed correctly.\nAll elements are expected to be integers.  \nCheck the delimiters used in input file.\n");
+						continue;
+					}
+					
 					intAl.add(tempInt);
 					sum = sum + tempInt;
 				}
 				line = br.readLine();
-			}		
+			}	
+			br.close();
 		} catch (FileNotFoundException f){
 			intAl.clear();
 			System.out.println("\n" + inputFileName + " was not found in the current working directory.\n");
@@ -139,6 +147,10 @@ class AssignScore {
 		
 		//create new File
 		FileWriter outputFileWriter = createOutputFile();
+		if (outputFileWriter == null){
+			System.out.println("Error writing to output file");
+			return;
+		}
 		
 		//calculate average
 		double average = (double)sum/(intAl.size());
@@ -146,37 +158,44 @@ class AssignScore {
 		
 		//range defintions of scores.
 		double outstanding = average * 1.10;
-		double unsatisfactory = average * .90;	
+		System.out.println("\nOutstanding is: > " + outstanding);
+		System.out.println("Average/Satisfactory is: " + average);
+		double unsatisfactory = average * .90;
+		System.out.println("Unsatisfactory is: < " + unsatisfactory + "\n");
 		
 		BufferedWriter bw = new BufferedWriter(outputFileWriter);
+		
+		bw.write("Score \t\tGrade");
+		bw.newLine();
+		bw.newLine();
+		System.out.println("Score \t\tGrade");
+		
+		String outstandingString = "\t\tO";
+		String unsatisfactoryString = "\t\tU";
+		String satisfactoryString = "\t\tS";
 		
 		for (int i: intAl){
 			//compare score;
 			
+			String outputString = "Warning! Never set.";
+			
 			if (i > outstanding){
-				String outstandingString = "Score: " + i + "\t\tGrade: Outstanding";
-				System.out.println(outstandingString);
-				bw.write(outstandingString);
-				bw.newLine();
+				outputString = i + outstandingString;
 			} else if (i < unsatisfactory){
-				String unsatisfactoryString = "Score: " + i + "\t\tGrade: Unsatisfatory";
-				System.out.println(unsatisfactoryString);
-				bw.write(unsatisfactoryString);
-				bw.newLine();
+				outputString = i + unsatisfactoryString;
 			} else {
-				String satisfactoryString = "Score: " + i + "\t\tGrade: Satisfactory";
-				System.out.println(satisfactoryString);
-				bw.write(satisfactoryString);
-				bw.newLine();
+				outputString = i + satisfactoryString;
 			}
+			
+			System.out.println(outputString);
+			bw.write(outputString);
+			bw.newLine();
 						
 		}
 		
 		bw.close();
 		
-		System.out.println("\nOutput file complete.");
-		
-		
+		System.out.println("\nOutput file complete.");	
 		
 	}
 	
@@ -210,8 +229,6 @@ class AssignScore {
 		
 		return null;
 		
-	}
-	
-	
+	}	
 	
 }
