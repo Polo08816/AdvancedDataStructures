@@ -88,7 +88,7 @@ class Driver {
 		int sum = 0;
 		
 		//Specifies the file name in the current working directory
-		inputFileName = "input.txt";
+		inputFileName = "project1_input.txt";
 		
 		try {
 			
@@ -210,7 +210,7 @@ class AssignScore {
 	private FileWriter createOutputFile(){
 		
 		//creates output File
-		String outputFileName = "output.txt";
+		String outputFileName = "project1_output.txt";
 		File outputFile = new File(System.getProperty("user.dir") + File.separator + outputFileName);
 		
 		//check if file exists and if it does, warn the user
