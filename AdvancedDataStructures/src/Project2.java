@@ -1,11 +1,6 @@
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 
 
@@ -23,6 +18,72 @@ public class Project2 {
 
 	}
 
+}
+
+class BankAccount{
+	
+	private String name;
+	private int accountNumber;
+	private double balance;
+	
+	/**
+	 * Public constructor for a base class of Accounts
+	 */
+	public BankAccount(){
+	
+		
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the accountNumber
+	 */
+	public int getAccountNumber() {
+		return accountNumber;
+	}
+
+	/**
+	 * @param accountNumber the accountNumber to set
+	 */
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	/**
+	 * @return the balance
+	 */
+	public double getBalance() {
+		return balance;
+	}
+
+	/**
+	 * @param balance the balance to set
+	 */
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+}
+
+class CheckingAccount extends BankAccount{
+	
+	private double interest;
+	
+	
+	
 }
 
 class Driver {
