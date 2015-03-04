@@ -16,19 +16,93 @@ public class Project2 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		ArrayList<BankAccount> al = new ArrayList<BankAccount>();
 		
+		Driver dr = new Driver();
+		dr.readFile(al);
+		
+		printArrayList(al);
+		
+		applyInterest(al);
+		
+		endMonth(al);
 
+	}
+	
+	/**
+	 * Prints values in ArrayList.
+	 * 
+	 * @param intAl ArrayList of Integers
+	 */
+	private static void printArrayList(ArrayList<BankAccount> al){
+		
+		System.out.println("\nPrinting contents of ArrayList:\n");
+		
+		Iterator<BankAccount> it = al.iterator();
+		while (it.hasNext()){
+			BankAccount ba = it.next();
+			String seperator = "\t\t";
+			System.out.println(ba.getName() + seperator + ba.getAccountNumber() + seperator + ba.getPhoneNumber() + seperator + ba.getSocialSecurityNumber() + seperator + ba.getOpenBalance() + seperator + ba.getCloseBalance());
+		}
+	}
+	
+	/**
+	 * Prints values in ArrayList.
+	 * 
+	 * @param intAl ArrayList of Integers
+	 */
+	private static void applyInterest(ArrayList<BankAccount> al){
+		
+		System.out.println("\nApplying interest to closing balances.\n");
+		
+		Iterator<BankAccount> it = al.iterator();
+		while (it.hasNext()){
+			BankAccount ba = it.next();
+			
+			if (ba instanceof CheckingAccount){
+				ba.setCloseBalance(ba.getOpenBalance()*1.025);
+			} else if (ba instanceof SavingsAccount){
+				if (ba.getOpenBalance() < 5000){
+					ba.setCloseBalance(ba.getOpenBalance()*1.04);
+				} else {
+					ba.setCloseBalance(ba.getOpenBalance()*1.05);
+				}
+			} else {
+				//ba is instanceof Business Account
+				ba.setCloseBalance(ba.getOpenBalance());
+			}
+			
+			String seperator = "\t\t";
+			System.out.println(ba.getName() + seperator + ba.getAccountNumber() + seperator + ba.getPhoneNumber() + seperator + ba.getSocialSecurityNumber() + seperator + ba.getOpenBalance() + seperator + ba.getCloseBalance());
+		}
+	}
+	
+	/**
+	 * Prints values in ArrayList.
+	 * 
+	 * @param intAl ArrayList of Integers
+	 */
+	private static void endMonth(ArrayList<BankAccount> al){
+		
+		System.out.println("\nSetting closing balances to next month's opening balances.\n");
+		
+		Iterator<BankAccount> it = al.iterator();
+		while (it.hasNext()){
+			BankAccount ba = it.next();
+			
+			ba.setOpenBalance(ba.getCloseBalance());
+			
+			String seperator = "\t\t";
+			System.out.println(ba.getName() + seperator + ba.getAccountNumber() + seperator + ba.getPhoneNumber() + seperator + ba.getSocialSecurityNumber() + seperator + ba.getOpenBalance() + seperator + ba.getCloseBalance());
+		}
 	}
 
 }
 
 class BankAccount{
 	
-	private String name;
-	private int accountNumber;
-	private double balance;
-	
-	public static final double baseinterest = 1.00;
+	private String fullName, accountNumber, socialSecurityNumber, phoneNumber;
+	private double openBalance, closeBalance;
 	
 	/**
 	 * Public constructor for a base class of Accounts
@@ -42,84 +116,104 @@ class BankAccount{
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return fullName;
 	}
 
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
-		this.name = name;
+		this.fullName = name;
 	}
 
 	/**
 	 * @return the accountNumber
 	 */
-	public int getAccountNumber() {
+	public String getAccountNumber() {
 		return accountNumber;
 	}
 
 	/**
 	 * @param accountNumber the accountNumber to set
 	 */
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 
 	/**
-	 * @return the balance
+	 * @return the phoneNumber
 	 */
-	public double getBalance() {
-		return balance;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
 	/**
-	 * @param balance the balance to set
+	 * @param phoneNumber the phoneNumber to set
 	 */
-	public void setBalance(double balance) {
-		this.balance = balance;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	/**
+	 * @return the socialSecurityNumber
+	 */
+	public String getSocialSecurityNumber() {
+		return socialSecurityNumber;
+	}
+
+	/**
+	 * @param socialSecurityNumber the socialSecurityNumber to set
+	 */
+	public void setSocialSecurityNumber(String socialSecurityNumber) {
+		this.socialSecurityNumber = socialSecurityNumber;
+	}
+
+	/**
+	 * @return the openBalance
+	 */
+	public double getOpenBalance() {
+		return openBalance;
+	}
+
+	/**
+	 * @param openBalance the openBalance to set
+	 */
+	public void setOpenBalance(double openBalance) {
+		this.openBalance = openBalance;
+	}
+
+	/**
+	 * @return the closeBalance
+	 */
+	public double getCloseBalance() {
+		return closeBalance;
+	}
+
+	/**
+	 * @param closeBalance the closeBalance to set
+	 */
+	public void setCloseBalance(double closeBalance) {
+		this.closeBalance = closeBalance;
+	}
+
+	/**
+	 * 
+	 */
+	public void endMonthBalace(){
+		this.closeBalance = this.openBalance;
 	}
 
 }
 
 class CheckingAccount extends BankAccount{
-	
-	private final double interest = 0.025;
-	
-	private double calculateInterest(){
 		
-		return interest+BankAccount.baseinterest;
-	}
-	
 }
 
 class BusinessAccount extends BankAccount{
 	
-	private final double interest = 0.000;
-	
-	private double calculateInterest(){
-		
-		return interest+BankAccount.baseinterest;
-	}
 }
 
 class SavingsAccount extends BankAccount{
-	
-	//if balance is below $5000
-	private final double lowinterest = 0.04;
-	
-	//if balance is $5000 or more
-	private final double highinterest = 0.05;
-	
-	private double calculateInterest(){
-		
-		if (this.getBalance() > 5000){
-			return highinterest+BankAccount.baseinterest;
-		} else {
-			return lowinterest+BankAccount.baseinterest;
-		}
-		
-	}
 	
 }
 
@@ -137,13 +231,11 @@ class Driver {
 	 * @param intAl an ArrayList of Integers of scores
 	 * @return sum Sum of all scores in ArrayList
 	 */
-	public int readFile(ArrayList<Integer> intAl){
+	public void readFile(ArrayList<BankAccount> baAl){
 	
 		BufferedReader br;
 		String line, inputFileName;
 		StringTokenizer st;
-		
-		int sum = 0;
 		
 		//Specifies the file name in the current working directory
 		inputFileName = "project2_input.txt";
@@ -158,38 +250,107 @@ class Driver {
 
 			while (line != null){
 				st = new StringTokenizer(line);
+				BankAccount ba = new BankAccount();
+				String type;
 				while (st.hasMoreTokens()){
-					int tempInt = 0;
 					try {
-						tempInt = Integer.parseInt(st.nextToken());
+						
+						String name, accountNumber, phoneNumber, socialSecurityNumber;
+						double openBalance;
+						
+						name = st.nextToken();
+						accountNumber = st.nextToken();
+						phoneNumber = st.nextToken();
+						socialSecurityNumber = st.nextToken();
+						openBalance = Double.parseDouble(st.nextToken());
+						
+						type = st.nextToken();
+						switch (type) {
+							case "B":
+								BusinessAccount busaccount = new BusinessAccount();
+								busaccount.setName(name);
+								busaccount.setAccountNumber(accountNumber);
+								busaccount.setPhoneNumber(phoneNumber);
+								busaccount.setSocialSecurityNumber(socialSecurityNumber);
+								busaccount.setOpenBalance(openBalance);
+								baAl.add(busaccount);
+								break;
+							case "C":
+								CheckingAccount checkaccount = new CheckingAccount();
+								checkaccount.setName(name);
+								checkaccount.setAccountNumber(accountNumber);
+								checkaccount.setPhoneNumber(phoneNumber);
+								checkaccount.setSocialSecurityNumber(socialSecurityNumber);
+								checkaccount.setOpenBalance(openBalance);
+								baAl.add(checkaccount);
+								break;
+							case "S":
+								SavingsAccount savaccount = new SavingsAccount();
+								savaccount.setName(name);
+								savaccount.setAccountNumber(accountNumber);
+								savaccount.setPhoneNumber(phoneNumber);
+								savaccount.setSocialSecurityNumber(socialSecurityNumber);
+								savaccount.setOpenBalance(openBalance);
+								baAl.add(savaccount);
+								break;
+							default:
+								System.out.println("Account type not recognized");
+								baAl.add(ba);
+								break;
+						}
 					} catch (NumberFormatException h){
-						System.out.println("\nWarning: Not all elements were able to be parsed correctly.\nAll elements are expected to be integers.  \nCheck the delimiters used in input file.\n");
+						System.out.println("\nWarning: Not all elements were able to be parsed correctly.\nCheck the delimiters used in input file.\n");
 						h.printStackTrace();
-//						System.out.println("\n" + inputFileName + ": Attempted to parse: " + st.toString());
 						continue;
 					}
 					
-					intAl.add(tempInt);
-					sum = sum + tempInt;
 				}
 				line = br.readLine();
 			}	
 			br.close();
 		} catch (FileNotFoundException f){
-			intAl.clear();
+			baAl.clear();
 			System.out.println("\n" + inputFileName + " was not found in the current working directory.\n");
 			f.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			intAl.clear();
-			System.out.println("Error tokenizing the input stream");
+			baAl.clear();
+			System.out.println("Error tokenizing the input stream.");
 			e.printStackTrace();
 		}
 		
-		System.out.println("\nNumber of ArrayList elements: " + intAl.size());		
-		System.out.println("\nSum: " + sum + "\n");
-		
-		return sum;		
+		System.out.println("\nNumber of ArrayList elements: " + baAl.size());		
+	
 	}
 	
+	/**
+	 * Checks to see if an output file exists.  Replaces output file with a warning.
+	 * 
+	 * @return outputFile returns the output File
+	 */
+	private FileWriter createOutputFile(){
+		
+		//creates output File
+		String outputFileName = "project2_output.txt";
+		File outputFile = new File(System.getProperty("user.dir") + File.separator + outputFileName);
+		
+		//check if file exists and if it does, warn the user
+		if (outputFile.exists() && !outputFile.isDirectory()){
+			System.out.println("\nWARNING!  You are over-writing an existing file!");
+		}
+		
+		FileWriter outputFileWriter;
+		try {
+			outputFileWriter = new FileWriter(outputFile, false);
+			return outputFileWriter;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			//This should not happen because check for directory is already done earlier.
+			System.out.println("FileWriter points to a directory, not a file.");
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
 }
