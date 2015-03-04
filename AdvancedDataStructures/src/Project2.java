@@ -15,6 +15,8 @@ public class Project2 {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		
 
 	}
 
@@ -25,6 +27,8 @@ class BankAccount{
 	private String name;
 	private int accountNumber;
 	private double balance;
+	
+	public static final double baseinterest = 1.00;
 	
 	/**
 	 * Public constructor for a base class of Accounts
@@ -80,9 +84,42 @@ class BankAccount{
 
 class CheckingAccount extends BankAccount{
 	
-	private double interest;
+	private final double interest = 0.025;
 	
+	private double calculateInterest(){
+		
+		return interest+BankAccount.baseinterest;
+	}
 	
+}
+
+class BusinessAccount extends BankAccount{
+	
+	private final double interest = 0.000;
+	
+	private double calculateInterest(){
+		
+		return interest+BankAccount.baseinterest;
+	}
+}
+
+class SavingsAccount extends BankAccount{
+	
+	//if balance is below $5000
+	private final double lowinterest = 0.04;
+	
+	//if balance is $5000 or more
+	private final double highinterest = 0.05;
+	
+	private double calculateInterest(){
+		
+		if (this.getBalance() > 5000){
+			return highinterest+BankAccount.baseinterest;
+		} else {
+			return lowinterest+BankAccount.baseinterest;
+		}
+		
+	}
 	
 }
 
