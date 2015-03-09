@@ -1,6 +1,5 @@
-/**
- * 
- */
+import java.io.*;
+
 
 /**
  * @author Kevin Kuo
@@ -13,6 +12,20 @@ public class Project4 {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		System.out.println("Enter command: ");
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		String command = null;
+		
+		try {
+			command = br.readLine();
+		} catch (IOException e){
+			System.out.println("IO error trying to read command!");
+			e.printStackTrace();
+		}
+		
 
 	}
 	
