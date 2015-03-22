@@ -7,6 +7,21 @@ import java.util.StringTokenizer;
  *
  */
 public class Project4 {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub	
+		
+		Driver dr = new Driver();
+		dr.runDriver();
+		
+	}
+	
+}
+
+class Driver{
 	
 	private static final String INSERT_TOKEN = "$insert";
 	private static final String DELETE_TOKEN = "$delete";
@@ -15,18 +30,15 @@ public class Project4 {
 	private static final String SEARCH_TOKEN = "$search";
 	private static final String DONE_TOKEN = "$done";
 	
-	private Node head = null;
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	private static Node head;
+	
+	public void runDriver(){
 		
-		
+	
+		Node head = null;
 		
 		String command = "";
-		StringTokenizer st;
+		StringTokenizer st = null;
 		
 		do {
 			
@@ -37,23 +49,9 @@ public class Project4 {
 				
 				command = br.readLine();
 						
-				while (command != null){
-					st = new StringTokenizer(command);
-					while (st.hasMoreTokens()){
-						try {
-
-//							tempInt = Integer.parseInt(st.nextToken());
-						} catch (NumberFormatException h){
-							System.out.println("\nWarning: Not all elements were able to be parsed correctly.\nAll elements are expected to be integers.  \nCheck the delimiters used in input file.\n");
-							h.printStackTrace();
-//							System.out.println("\n" + inputFileName + ": Attempted to parse: " + st.toString());
-							continue;
-						}
-						
-					}
-					command = br.readLine();
-				}	
+				st = new StringTokenizer(command, " ,");
 				br.close();
+				
 			} catch (IOException e){
 				System.out.println("IO error trying to read command!");
 				e.printStackTrace();
@@ -61,8 +59,9 @@ public class Project4 {
 			
 			//tokenize command
 			
-			switch (command){
-				case INSERT_TOKEN: 
+			switch (st.nextToken().toString()){
+				case INSERT_TOKEN:
+					insertLine(head);
 					break;
 				case DELETE_TOKEN:
 					break;
@@ -80,18 +79,28 @@ public class Project4 {
 			
 			}
 			
-		} while (command.equalsIgnoreCase(DONE_TOKEN) == false);
-		
-		
-		
-		
-		
+		} while (command.equalsIgnoreCase(DONE_TOKEN) == false);	
 		
 		
 
 	}
 	
-	private void insertLine(String line){
+	private void insertLine(Node n){
+		
+		System.out.println("Enter lines to insert: ");			
+		BufferedReader br;
+		try {
+			
+			br = new BufferedReader(new InputStreamReader(System.in));
+			while (br.readLine() != null){
+				Node insertNode = new Node(n, br.readLine());
+				head = insertNode;
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -99,7 +108,16 @@ public class Project4 {
 		
 	}
 	
-	private void printLines(){
+	/**
+	 * Prints all the Strings in each Node.
+	 * 
+	 * @param n Head node
+	 */
+	private void printLines(Node n){
+		
+		while (n.next != null){
+			System.out.println(n.st.toString());
+		}
 		
 	}
 	
