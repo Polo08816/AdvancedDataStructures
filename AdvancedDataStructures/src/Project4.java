@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.*;
 
 
 /**
@@ -40,8 +40,9 @@ class Driver{
 		currentLine = null;
 		
 		String command = "";
-		String firstCommand;
+		String firstCommand = "";
 		StringTokenizer st = null;
+		int mLow, nHigh;
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -55,29 +56,59 @@ class Driver{
 				command = br.readLine();
 						
 				st = new StringTokenizer(command, " ,");
-				//br.close();
+				firstCommand = st.nextToken().toString().trim();
 				
+				
+			} catch (NoSuchElementException g){
+				System.out.println("Incorrect command!");
+				g.printStackTrace();
 			} catch (IOException e){
 				System.out.println("IO error trying to read command!");
 				e.printStackTrace();
 			}
 			
-			firstCommand = st.nextToken().toString().trim();
+			
 			
 			switch (firstCommand){
 				case INSERT_TOKEN:
 					insertLine(head);
 					break;
-				case DELETE_TOKEN:
+				case DELETE_TOKEN:				
+					
+					if (st.hasMoreTokens()){
+						try{
+							mLow = Integer.parseInt(st.nextToken());
+							nHigh = Integer.parseInt(st.nextToken());							
+							if (mLow > nHigh && mLow < 1 || nHigh < 1){
+								System.out.println("deleteLines: incorrect argument(s): first line # > last line # AND/OR line number less than 1");
+							} else {
+								deleteLines(mLow, nHigh);
+							}
+						} catch (NoSuchElementException f){
+							System.out.println("Missing arguments");
+							f.printStackTrace();
+						}
+					} else {
+						printLines(head);
+					}		
 					break;
 				case PRINT_TOKEN:
 					if (st.hasMoreTokens()){
-						int mLow = Integer.parseInt(st.nextToken());
-						int nHigh = Integer.parseInt(st.nextToken());
-						
-					} else {
-						printLines(head);
-					}					
+						try{
+							mLow = Integer.parseInt(st.nextToken());
+							nHigh = Integer.parseInt(st.nextToken());							
+							if (mLow > nHigh && mLow < 1 || nHigh < 1){
+								System.out.println("printLines: incorrect argument(s): first line # > last line # AND/OR line number less than 1");
+							} else {
+								
+							}
+						} catch (NoSuchElementException f){
+							System.out.println("Missing arguments");
+							f.printStackTrace();
+						}
+					} 
+					//printLines
+					printLines(head);
 					break;
 				case LINE_TOKEN:
 					break;
@@ -92,9 +123,9 @@ class Driver{
 			
 			}
 			
-		} while (firstCommand.equalsIgnoreCase(DONE_TOKEN) == false);	
+		} while (firstCommand.equalsIgnoreCase(DONE_TOKEN) == false);
 		
-		
+//		br.close();
 
 	}
 	
@@ -107,10 +138,12 @@ class Driver{
 			br = new BufferedReader(new InputStreamReader(System.in));
 			
 			while (br.readLine() != null){
-			
 				Node insertNode = new Node(n, br.readLine());
 				head = insertNode;
+				System.out.println("Enter lines to insert: ");
 			}
+			
+			//logic to stop 
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -157,10 +190,6 @@ class Driver{
 			System.out.println("Line " + count + " : " + headNode.lineString.toString());
 			headNode = headNode.next;
 		}
-		
-	}
-	
-	private void printLines(int start, int finish){
 		
 	}
 	
