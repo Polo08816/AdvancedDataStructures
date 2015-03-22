@@ -31,47 +31,60 @@ class Driver{
 	private static final String DONE_TOKEN = "$done";
 	
 	private static Node head;
+	private static Node currentLine;
 	
 	public void runDriver(){
 		
 	
-		Node head = null;
+		head = null;
+		currentLine = null;
 		
 		String command = "";
+		String firstCommand;
 		StringTokenizer st = null;
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		do {
 			
 			System.out.println("Enter command: ");			
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			
 			
 			try {
 				
 				command = br.readLine();
 						
 				st = new StringTokenizer(command, " ,");
-				br.close();
+				//br.close();
 				
 			} catch (IOException e){
 				System.out.println("IO error trying to read command!");
 				e.printStackTrace();
 			}
 			
-			//tokenize command
+			firstCommand = st.nextToken().toString().trim();
 			
-			switch (st.nextToken().toString()){
+			switch (firstCommand){
 				case INSERT_TOKEN:
 					insertLine(head);
 					break;
 				case DELETE_TOKEN:
 					break;
 				case PRINT_TOKEN:
+					if (st.hasMoreTokens()){
+						int mLow = Integer.parseInt(st.nextToken());
+						int nHigh = Integer.parseInt(st.nextToken());
+						
+					} else {
+						printLines(head);
+					}					
 					break;
 				case LINE_TOKEN:
 					break;
 				case SEARCH_TOKEN:
 					break;
 				case DONE_TOKEN:
+					System.out.println("Program is exiting.");
 					break;
 				default:
 					System.out.println("Invalid command.  Enter a valid command.");
@@ -79,7 +92,7 @@ class Driver{
 			
 			}
 			
-		} while (command.equalsIgnoreCase(DONE_TOKEN) == false);	
+		} while (firstCommand.equalsIgnoreCase(DONE_TOKEN) == false);	
 		
 		
 
@@ -92,13 +105,16 @@ class Driver{
 		try {
 			
 			br = new BufferedReader(new InputStreamReader(System.in));
+			
 			while (br.readLine() != null){
+			
 				Node insertNode = new Node(n, br.readLine());
 				head = insertNode;
 			}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			System.out.println("insertLine error!");
 			e.printStackTrace();
 		}
 		
@@ -111,12 +127,35 @@ class Driver{
 	/**
 	 * Prints all the Strings in each Node.
 	 * 
-	 * @param n Head node
+	 * @param headNode Head node
 	 */
-	private void printLines(Node n){
+	private void printLines(Node headNode){
 		
-		while (n.next != null){
-			System.out.println(n.st.toString());
+		int count = 0;
+		
+		while (headNode != null && headNode.lineString.toString().isEmpty() == false){
+			count++;
+			System.out.println("Line " + count + " : " + headNode.lineString.toString());
+			headNode = headNode.next;
+		}
+		
+	}
+	
+	/**
+	 * Prints all the Strings in each Node from M to N inclusive.
+	 * 
+	 * @param headNode Head node
+	 * @param m Earlier line number.
+	 * @param n Later line number.
+	 */
+	private void printLines(Node headNode, int m, int n){
+		
+		int count = 0;
+		
+		while (headNode != null && headNode.lineString.toString().isEmpty() == false){
+			count++;
+			System.out.println("Line " + count + " : " + headNode.lineString.toString());
+			headNode = headNode.next;
 		}
 		
 	}
@@ -135,31 +174,31 @@ class Driver{
 
 }
 
-enum Command{
-	
-	INSERT_TOKEN("$insert"),
-	DELETE_TOKEN("$delete"),
-	PRINT_TOKEN("$print"),
-	LINE_TOKEN("$line"),
-	SEARCH_TOKEN("$search"),
-	DONE_TOKEN("$done");	
-	
-	private String command_token;
-	
-	private Command(String token){
-		this.command_token = token;
-	}
-	
-}
+//enum Command{
+//	
+//	INSERT_TOKEN("$insert"),
+//	DELETE_TOKEN("$delete"),
+//	PRINT_TOKEN("$print"),
+//	LINE_TOKEN("$line"),
+//	SEARCH_TOKEN("$search"),
+//	DONE_TOKEN("$done");	
+//	
+//	private String command_token;
+//	
+//	private Command(String token){
+//		this.command_token = token;
+//	}
+//	
+//}
 
 class Node {
 	
-	String st;
+	String lineString;
 	Node next;
 	
 	public Node(){
 		
-		this.st = "";
+		this.lineString = "";
 		this.next = null;
 		
 	}
@@ -167,7 +206,7 @@ class Node {
 	public Node(Node next, String st){
 		
 		this.next = next;
-		this.st = st;
+		this.lineString = st;
 		
 	}
 	
