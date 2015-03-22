@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.StringTokenizer;
 
 
 /**
@@ -13,6 +14,8 @@ public class Project4 {
 	private static final String LINE_TOKEN = "$line";
 	private static final String SEARCH_TOKEN = "$search";
 	private static final String DONE_TOKEN = "$done";
+	
+	private Node head = null;
 
 	/**
 	 * @param args
@@ -20,7 +23,10 @@ public class Project4 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		
+		
 		String command = "";
+		StringTokenizer st;
 		
 		do {
 			
@@ -28,7 +34,26 @@ public class Project4 {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			
 			try {
+				
 				command = br.readLine();
+						
+				while (command != null){
+					st = new StringTokenizer(command);
+					while (st.hasMoreTokens()){
+						try {
+
+//							tempInt = Integer.parseInt(st.nextToken());
+						} catch (NumberFormatException h){
+							System.out.println("\nWarning: Not all elements were able to be parsed correctly.\nAll elements are expected to be integers.  \nCheck the delimiters used in input file.\n");
+							h.printStackTrace();
+//							System.out.println("\n" + inputFileName + ": Attempted to parse: " + st.toString());
+							continue;
+						}
+						
+					}
+					command = br.readLine();
+				}	
+				br.close();
 			} catch (IOException e){
 				System.out.println("IO error trying to read command!");
 				e.printStackTrace();
@@ -66,7 +91,7 @@ public class Project4 {
 
 	}
 	
-	private void insertLine(){
+	private void insertLine(String line){
 		
 	}
 	
