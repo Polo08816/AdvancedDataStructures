@@ -201,10 +201,6 @@ class Driver{
 		int count = 1;
 		Node startNode, endNode;
 		
-//		if (start == 1){
-//			headNode = headNode.next;
-//		}
-		
 		startNode = headNode;
 		endNode = startNode;
 		
@@ -239,15 +235,18 @@ class Driver{
 		if (headNode == null){
 			System.out.println("Current node not set.");
 			return;
-		}
+		} 
 		
-		int count =0;
+		int count = -1;
 		
-		while (headNode != null){
+		while (headNode.next != null){
 			count++;
-			System.out.println("Line " + count + " : " + headNode.lineString.toString());
-			if (count == m - 1){
-				currentLine = headNode;				
+			
+			if (count == (m - 1)){
+				
+				currentLine = headNode;	
+				System.out.println("Line SET: " + (count + 1) + " : " + headNode.lineString.toString());
+				break;
 			}
 			headNode = headNode.next;
 		}
@@ -282,7 +281,6 @@ class Driver{
 	private void printLines(Node headNode, int m, int n){
 		
 		int count = 0;
-		System.out.println("M: " + m + "  N: "+ n);
 		
 		while (headNode != null && headNode.lineString.toString().isEmpty() == false){
 			count++;
