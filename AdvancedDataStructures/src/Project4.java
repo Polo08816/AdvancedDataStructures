@@ -153,9 +153,8 @@ class Driver{
 	
 	private void insertLine(Node n, String lineCommand){
 		
-		if (n == null){
-			System.out.println("Enter lines to insert: ");	
-		}
+		System.out.println("Enter lines to insert: ");	
+
 				
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Node insertNode;
@@ -176,12 +175,18 @@ class Driver{
 				head = insertNode;
 				return;
 			}
-			
-			while (n.next != null){
-				n = n.next;				
+			if (currentLine == null){
+				while (n.next != null){
+					n = n.next;				
+				}
+				insertNode = new Node(null, line);
+				n.next = insertNode;
+			} else {
+				insertNode = new Node(currentLine.next, line);
+				currentLine.next = insertNode;
+				currentLine = currentLine.next;
 			}
-			insertNode = new Node(null, line);
-			n.next = insertNode;
+			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -244,10 +249,11 @@ class Driver{
 			
 			if (count == (m - 1)){
 				
-				currentLine = headNode;	
+					
 				System.out.println("Line SET: " + (count + 1) + " : " + headNode.lineString.toString());
 				break;
 			}
+			currentLine = headNode;
 			headNode = headNode.next;
 		}
 		printLines(head, m-3, m+3);
