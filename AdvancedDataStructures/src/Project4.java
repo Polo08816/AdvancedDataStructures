@@ -178,17 +178,44 @@ class Driver{
 	
 	private void deleteLines(Node headNode, int start, int finish){
 		
-		int count = 1;
-		Node current, finishNode;
-		
-		while (headNode != null){		
-			
-			if (count >= start && count <= finish){
-				System.out.println("Line " + count + " : " + headNode.lineString.toString());
-			}
-			count++;
-			headNode = headNode.next;
+		if (headNode == null){
+			System.out.println("There are no nodes to delete");
+			return;
 		}
+		
+		int count = 1;
+		Node startNode, endNode;
+		
+//		if (start == 1){
+//			headNode = headNode.next;
+//		}
+		
+		startNode = headNode;
+		endNode = startNode;
+		
+		while (endNode != null){
+			
+			if (count + 1 < start){
+				startNode = startNode.next;
+			}
+			
+			if (count < finish){
+				endNode = endNode.next;
+			}
+			
+			if (count == finish){
+				break;
+			}
+			
+			count++;
+
+		}
+		
+		if (start == 1){
+			head = endNode.next;
+		}
+		
+		startNode.next = endNode.next;
 	}
 	
 	/**
