@@ -100,7 +100,7 @@ class Driver{
 							if (mLow > nHigh && mLow < 1 || nHigh < 1){
 								System.out.println("printLines: incorrect argument(s): first line # > last line # AND/OR line number less than 1");
 							} else {
-								
+								printLines(head, mLow, nHigh);
 							}
 						} catch (NoSuchElementException f){
 							System.out.println("Missing arguments");
@@ -112,6 +112,7 @@ class Driver{
 					break;
 				case LINE_TOKEN:
 					insertMode = false;
+					setCurrentLine(head, Integer.parseInt(st.nextToken().toString()));
 					break;
 				case SEARCH_TOKEN:
 					insertMode = false;
@@ -236,7 +237,7 @@ class Driver{
 	private void setCurrentLine(Node headNode, int m){
 		
 		if (headNode == null){
-			System.out.println("Current node not set");
+			System.out.println("Current node not set.");
 			return;
 		}
 		
@@ -245,11 +246,12 @@ class Driver{
 		while (headNode != null){
 			count++;
 			System.out.println("Line " + count + " : " + headNode.lineString.toString());
-			if (count == m){
-				currentLine = headNode;
+			if (count == m - 1){
+				currentLine = headNode;				
 			}
 			headNode = headNode.next;
 		}
+		printLines(head, m-3, m+3);
 
 	}
 	
@@ -280,6 +282,7 @@ class Driver{
 	private void printLines(Node headNode, int m, int n){
 		
 		int count = 0;
+		System.out.println("M: " + m + "  N: "+ n);
 		
 		while (headNode != null && headNode.lineString.toString().isEmpty() == false){
 			count++;
@@ -301,6 +304,7 @@ class Driver{
 			if (headNode.lineString.toString().contains(regex.trim())){
 				System.out.println("String searched: " + regex);
 				System.out.println("Line " + count + " : " + headNode.lineString.toString());
+				return;
 			}
 			headNode = headNode.next;
 		}
