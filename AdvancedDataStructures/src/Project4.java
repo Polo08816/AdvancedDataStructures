@@ -115,6 +115,20 @@ class Driver{
 					break;
 				case SEARCH_TOKEN:
 					insertMode = false;
+					String searchString = "";
+					
+					while (st.hasMoreTokens()){
+						System.out.println("More tokens.");
+						searchString = searchString.concat(st.nextToken() + " ");
+					}
+					
+					System.out.println("searchString : " + searchString);
+					if (searchString.equalsIgnoreCase("")){
+						System.out.println("You did not enter a valid search String");
+					} else {
+						searchString(head, searchString);
+					}
+					
 					break;
 				case DONE_TOKEN:
 					insertMode = false;
@@ -218,6 +232,27 @@ class Driver{
 		startNode.next = endNode.next;
 	}
 	
+	
+	private void setCurrentLine(Node headNode, int m){
+		
+		if (headNode == null){
+			System.out.println("Current node not set");
+			return;
+		}
+		
+		int count =0;
+		
+		while (headNode != null){
+			count++;
+			System.out.println("Line " + count + " : " + headNode.lineString.toString());
+			if (count == m){
+				currentLine = headNode;
+			}
+			headNode = headNode.next;
+		}
+
+	}
+	
 	/**
 	 * Prints all the Strings in each Node.
 	 * 
@@ -263,7 +298,7 @@ class Driver{
 		
 		while (headNode != null && headNode.lineString.toString().isEmpty() == false){
 			count++;
-			if (headNode.lineString.toString().contains(regex)){
+			if (headNode.lineString.toString().contains(regex.trim())){
 				System.out.println("String searched: " + regex);
 				System.out.println("Line " + count + " : " + headNode.lineString.toString());
 			}
