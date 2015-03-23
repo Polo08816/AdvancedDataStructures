@@ -44,12 +44,13 @@ class Driver{
 		StringTokenizer st = null;
 		int mLow, nHigh;
 		
+		boolean insertMode = false;
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		do {
 			
-			System.out.println("Enter command: ");			
-			
+			System.out.println("Enter command or line: ");		
 			
 			try {
 				
@@ -58,23 +59,21 @@ class Driver{
 				st = new StringTokenizer(command, " ,");
 				firstCommand = st.nextToken().toString().trim();
 				
-				
 			} catch (NoSuchElementException g){
 				System.out.println("Incorrect command!");
 				g.printStackTrace();
 			} catch (IOException e){
 				System.out.println("IO error trying to read command!");
 				e.printStackTrace();
-			}
-			
-			
+			}			
 			
 			switch (firstCommand){
 				case INSERT_TOKEN:
-					insertLine(head);
+					insertMode = true;
+					insertLine(head, "");
 					break;
 				case DELETE_TOKEN:				
-					
+					insertMode = false;
 					if (st.hasMoreTokens()){
 						try{
 							mLow = Integer.parseInt(st.nextToken());
@@ -82,7 +81,7 @@ class Driver{
 							if (mLow > nHigh && mLow < 1 || nHigh < 1){
 								System.out.println("deleteLines: incorrect argument(s): first line # > last line # AND/OR line number less than 1");
 							} else {
-								deleteLines(mLow, nHigh);
+								deleteLines(head, mLow, nHigh);
 							}
 						} catch (NoSuchElementException f){
 							System.out.println("Missing arguments");
@@ -93,6 +92,7 @@ class Driver{
 					}		
 					break;
 				case PRINT_TOKEN:
+					insertMode = false;
 					if (st.hasMoreTokens()){
 						try{
 							mLow = Integer.parseInt(st.nextToken());
@@ -106,20 +106,27 @@ class Driver{
 							System.out.println("Missing arguments");
 							f.printStackTrace();
 						}
-					} 
-					//printLines
-					printLines(head);
+					} else {
+						printLines(head);
+					}
 					break;
 				case LINE_TOKEN:
+					insertMode = false;
 					break;
 				case SEARCH_TOKEN:
+					insertMode = false;
 					break;
 				case DONE_TOKEN:
+					insertMode = false;
 					System.out.println("Program is exiting.");
-					break;
+					return;
 				default:
-					System.out.println("Invalid command.  Enter a valid command.");
-					break;
+					if (insertMode == true){
+						insertLine(head, command);
+					} else {
+						System.out.println("Invalid command.  Enter a valid command.");
+						break;
+					}		
 			
 			}
 			
@@ -129,21 +136,37 @@ class Driver{
 
 	}
 	
-	private void insertLine(Node n){
+	private void insertLine(Node n, String lineCommand){
 		
-		System.out.println("Enter lines to insert: ");			
-		BufferedReader br;
+		if (n == null){
+			System.out.println("Enter lines to insert: ");	
+		}
+				
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		Node insertNode;
+		String line;		
+		
 		try {
 			
-			br = new BufferedReader(new InputStreamReader(System.in));
-			
-			while (br.readLine() != null){
-				Node insertNode = new Node(n, br.readLine());
-				head = insertNode;
-				System.out.println("Enter lines to insert: ");
+			if (lineCommand.isEmpty()){
+				line = br.readLine();
+			} else {
+				line = lineCommand;
 			}
 			
-			//logic to stop 
+			if (n == null){
+				
+				insertNode = new Node(null, line);
+				
+				head = insertNode;
+				return;
+			}
+			
+			while (n.next != null){
+				n = n.next;				
+			}
+			insertNode = new Node(null, line);
+			n.next = insertNode;
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -153,8 +176,19 @@ class Driver{
 		
 	}
 	
-	private void deleteLines(int start, int finish){
+	private void deleteLines(Node headNode, int start, int finish){
 		
+		int count = 1;
+		Node current, finishNode;
+		
+		while (headNode != null){		
+			
+			if (count >= start && count <= finish){
+				System.out.println("Line " + count + " : " + headNode.lineString.toString());
+			}
+			count++;
+			headNode = headNode.next;
+		}
 	}
 	
 	/**
@@ -187,38 +221,30 @@ class Driver{
 		
 		while (headNode != null && headNode.lineString.toString().isEmpty() == false){
 			count++;
-			System.out.println("Line " + count + " : " + headNode.lineString.toString());
+			
+			if (count >= m && count <= n){
+				System.out.println("Line " + count + " : " + headNode.lineString.toString());
+			}			
 			headNode = headNode.next;
 		}
 		
 	}
 	
-	private void searchString(String regex){
+	private void searchString(Node headNode, String regex){
 		
-	}
-	
-	private void doneExecution(){
+		int count = 0;
 		
+		while (headNode != null && headNode.lineString.toString().isEmpty() == false){
+			count++;
+			if (headNode.lineString.toString().contains(regex)){
+				System.out.println("String searched: " + regex);
+				System.out.println("Line " + count + " : " + headNode.lineString.toString());
+			}
+			headNode = headNode.next;
+		}
 	}
 
 }
-
-//enum Command{
-//	
-//	INSERT_TOKEN("$insert"),
-//	DELETE_TOKEN("$delete"),
-//	PRINT_TOKEN("$print"),
-//	LINE_TOKEN("$line"),
-//	SEARCH_TOKEN("$search"),
-//	DONE_TOKEN("$done");	
-//	
-//	private String command_token;
-//	
-//	private Command(String token){
-//		this.command_token = token;
-//	}
-//	
-//}
 
 class Node {
 	
