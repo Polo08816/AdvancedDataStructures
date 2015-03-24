@@ -61,10 +61,10 @@ class Driver{
 				
 			} catch (NoSuchElementException g){
 				System.out.println("Incorrect command!");
-				g.printStackTrace();
+//				g.printStackTrace();
 			} catch (IOException e){
 				System.out.println("IO error trying to read command!");
-				e.printStackTrace();
+//				e.printStackTrace();
 			}			
 			
 			switch (firstCommand){
@@ -78,14 +78,14 @@ class Driver{
 						try{
 							mLow = Integer.parseInt(st.nextToken());
 							nHigh = Integer.parseInt(st.nextToken());							
-							if (mLow > nHigh && mLow < 1 || nHigh < 1){
+							if (mLow > nHigh || mLow < 1 || nHigh < 1){
 								System.out.println("deleteLines: incorrect argument(s): first line # > last line # AND/OR line number less than 1");
 							} else {
 								deleteLines(head, mLow, nHigh);
 							}
 						} catch (NoSuchElementException f){
 							System.out.println("Missing arguments");
-							f.printStackTrace();
+//							f.printStackTrace();
 						}
 					} else {
 						printLines(head);
@@ -104,7 +104,7 @@ class Driver{
 							}
 						} catch (NoSuchElementException f){
 							System.out.println("Missing arguments");
-							f.printStackTrace();
+//							f.printStackTrace();
 						}
 					} else {
 						printLines(head);
@@ -119,11 +119,9 @@ class Driver{
 					String searchString = "";
 					
 					while (st.hasMoreTokens()){
-						System.out.println("More tokens.");
 						searchString = searchString.concat(st.nextToken() + " ");
 					}
 					
-					System.out.println("searchString : " + searchString);
 					if (searchString.equalsIgnoreCase("")){
 						System.out.println("You did not enter a valid search String");
 					} else {
@@ -153,7 +151,10 @@ class Driver{
 	
 	private void insertLine(Node n, String lineCommand){
 		
-		System.out.println("Enter lines to insert: ");	
+		if (n == null){
+			System.out.println("Enter lines to insert: ");	
+		}
+		
 
 				
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -306,7 +307,7 @@ class Driver{
 		while (headNode != null && headNode.lineString.toString().isEmpty() == false){
 			count++;
 			if (headNode.lineString.toString().contains(regex.trim())){
-				System.out.println("String searched: " + regex);
+//				System.out.println("String searched: " + regex);
 				System.out.println("Line " + count + " : " + headNode.lineString.toString());
 				return;
 			}
