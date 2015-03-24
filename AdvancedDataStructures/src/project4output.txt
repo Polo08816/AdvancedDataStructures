@@ -54,8 +54,11 @@ Line 4 : over twenty-five millions golfers,
 Line 5 : playing over 15,000 courses. 
 Line 6 : Once considered the game of the wealthy,
 Enter command or line: 
-$search Wooods
-String searched: Wooods  NOT FOUND!
+insert
+Invalid command.  Enter a valid command.
+Enter command or line: 
+$search Woods
+String searched: Woods  NOT FOUND!
 Enter command or line: 
 $line 1
 Line SET: 1 : Golf is indeed the fastest-growing game 
@@ -70,16 +73,37 @@ Enter command or line:
 as well as a wealthy person
 Enter command or line: 
 $search Tiger
-Line 3 : Tiger Woods is a famous golfer
+Line 1 : Tiger Woods is a famous golfer
 Enter command or line: 
-Can I put a line of text here?
+Can I input a line of text here?
 Invalid command.  Enter a valid command.
 Enter command or line: 
 $print 2 5
-Line 2 : on an international level.
-Line 3 : Tiger Woods is a famous golfer
-Line 4 : as well as a wealthy person
+Line 2 : Golf is indeed the fastest-growing game 
+Line 3 : as well as a wealthy person
+Line 4 : on an international level.
 Line 5 : In the United States alone there are
+Enter command or line: 
+$line 8
+Line SET: 8 : Once considered the game of the wealthy,
+Line 5 : In the United States alone there are
+Line 6 : over twenty-five millions golfers,
+Line 7 : playing over 15,000 courses. 
+Line 8 : Once considered the game of the wealthy,
+Line 9 : golf is changing its image. 
+Line 10 : Exclusive clubs are 
+Line 11 : no longer the mode of the day, 
+Enter command or line: 
+$insert
+When you are out on the golf course,
+Enter command or line: 
+it is a different world. The air is
+Enter command or line: 
+clear, and the world is a calmer place
+Enter command or line: 
+on the golf course, no matter how frustrated
+Enter command or line: 
+one gets.
 Enter command or line: 
 $print 100
 Missing arguments
@@ -88,19 +112,24 @@ $display
 Invalid command.  Enter a valid command.
 Enter command or line: 
 $print
-Line 1 : Golf is indeed the fastest-growing game 
-Line 2 : on an international level.
-Line 3 : Tiger Woods is a famous golfer
-Line 4 : as well as a wealthy person
+Line 1 : Tiger Woods is a famous golfer
+Line 2 : Golf is indeed the fastest-growing game 
+Line 3 : as well as a wealthy person
+Line 4 : on an international level.
 Line 5 : In the United States alone there are
 Line 6 : over twenty-five millions golfers,
 Line 7 : playing over 15,000 courses. 
-Line 8 : Once considered the game of the wealthy,
-Line 9 : golf is changing its image. 
-Line 10 : Exclusive clubs are 
-Line 11 : no longer the mode of the day, 
-Line 12 : as architects are building
-Line 13 : courses for the public.
+Line 8 : When you are out on the golf course,
+Line 9 : it is a different world. The air is
+Line 10 : clear, and the world is a calmer place
+Line 11 : on the golf course, no matter how frustrated
+Line 12 : one gets.
+Line 13 : Once considered the game of the wealthy,
+Line 14 : golf is changing its image. 
+Line 15 : Exclusive clubs are 
+Line 16 : no longer the mode of the day, 
+Line 17 : as architects are building
+Line 18 : courses for the public.
 Enter command or line: 
 $done
 Program is exiting.

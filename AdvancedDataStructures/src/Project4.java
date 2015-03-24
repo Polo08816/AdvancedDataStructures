@@ -182,6 +182,9 @@ class Driver{
 				}
 				insertNode = new Node(null, line);
 				n.next = insertNode;
+			} else if (currentLine == head){
+				insertNode = new Node(head, line);
+				head = insertNode;
 			} else {
 				insertNode = new Node(currentLine.next, line);
 				currentLine.next = insertNode;
@@ -245,11 +248,32 @@ class Driver{
 		
 		int count = -1;
 		
-		while (headNode.next != null){
+//		if (m == 1){
+//			currentLine = head;
+//		} else {
+//			while (headNode.next != null){
+//				count++;
+//				
+//				if (count == (m - 1)){
+//					
+////					currentLine = headNode;
+//						
+//					System.out.println("Line SET: " + (count + 1) + " : " + headNode.lineString.toString());
+//					break;
+//				}
+//				currentLine = headNode;
+//				headNode = headNode.next;
+//			}
+//		}
+		
+		while (headNode != null){
 			count++;
 			
 			if (count == (m - 1)){
 				
+				if (count == 0){
+					currentLine = headNode;
+				}			
 					
 				System.out.println("Line SET: " + (count + 1) + " : " + headNode.lineString.toString());
 				break;
@@ -257,6 +281,7 @@ class Driver{
 			currentLine = headNode;
 			headNode = headNode.next;
 		}
+		
 		printLines(head, m-3, m+3);
 
 	}
