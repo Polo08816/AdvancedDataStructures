@@ -1,0 +1,106 @@
+Enter command or line: 
+$insert
+Enter lines to insert: 
+Golf is indeed the fastest-growing game 
+Enter command or line: 
+on an international level.
+Enter command or line: 
+A life long game for 
+Enter command or line: 
+every golf addict
+Enter command or line: 
+In the United States alone there are
+Enter command or line: 
+over twenty-five millions golfers,
+Enter command or line: 
+playing over 15,000 courses. 
+Enter command or line: 
+Once considered the game of the wealthy,
+Enter command or line: 
+golf is changing its image. 
+Enter command or line: 
+Exclusive clubs are 
+Enter command or line: 
+no longer the mode of the day, 
+Enter command or line: 
+as architects are building
+Enter command or line: 
+courses for the public.
+Enter command or line: 
+$delete 3 4
+Enter command or line: 
+$print
+Line 1 : Golf is indeed the fastest-growing game 
+Line 2 : on an international level.
+Line 3 : In the United States alone there are
+Line 4 : over twenty-five millions golfers,
+Line 5 : playing over 15,000 courses. 
+Line 6 : Once considered the game of the wealthy,
+Line 7 : golf is changing its image. 
+Line 8 : Exclusive clubs are 
+Line 9 : no longer the mode of the day, 
+Line 10 : as architects are building
+Line 11 : courses for the public.
+Enter command or line: 
+$delete 3 2
+deleteLines: incorrect argument(s): first line # > last line # AND/OR line number less than 1
+Enter command or line: 
+$line 3
+Line SET: 3 : In the United States alone there are
+Line 1 : Golf is indeed the fastest-growing game 
+Line 2 : on an international level.
+Line 3 : In the United States alone there are
+Line 4 : over twenty-five millions golfers,
+Line 5 : playing over 15,000 courses. 
+Line 6 : Once considered the game of the wealthy,
+Enter command or line: 
+$search Wooods
+String searched: Wooods  NOT FOUND!
+Enter command or line: 
+$line 1
+Line SET: 1 : Golf is indeed the fastest-growing game 
+Line 1 : Golf is indeed the fastest-growing game 
+Line 2 : on an international level.
+Line 3 : In the United States alone there are
+Line 4 : over twenty-five millions golfers,
+Enter command or line: 
+$insert
+Tiger Woods is a famous golfer
+Enter command or line: 
+as well as a wealthy person
+Enter command or line: 
+$search Tiger
+Line 3 : Tiger Woods is a famous golfer
+Enter command or line: 
+Can I put a line of text here?
+Invalid command.  Enter a valid command.
+Enter command or line: 
+$print 2 5
+Line 2 : on an international level.
+Line 3 : Tiger Woods is a famous golfer
+Line 4 : as well as a wealthy person
+Line 5 : In the United States alone there are
+Enter command or line: 
+$print 100
+Missing arguments
+Enter command or line: 
+$display
+Invalid command.  Enter a valid command.
+Enter command or line: 
+$print
+Line 1 : Golf is indeed the fastest-growing game 
+Line 2 : on an international level.
+Line 3 : Tiger Woods is a famous golfer
+Line 4 : as well as a wealthy person
+Line 5 : In the United States alone there are
+Line 6 : over twenty-five millions golfers,
+Line 7 : playing over 15,000 courses. 
+Line 8 : Once considered the game of the wealthy,
+Line 9 : golf is changing its image. 
+Line 10 : Exclusive clubs are 
+Line 11 : no longer the mode of the day, 
+Line 12 : as architects are building
+Line 13 : courses for the public.
+Enter command or line: 
+$done
+Program is exiting.

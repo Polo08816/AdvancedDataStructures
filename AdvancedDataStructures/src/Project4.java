@@ -313,6 +313,7 @@ class Driver{
 			}
 			headNode = headNode.next;
 		}
+		System.out.println("String searched: " + regex + " NOT FOUND!");
 	}
 
 }
