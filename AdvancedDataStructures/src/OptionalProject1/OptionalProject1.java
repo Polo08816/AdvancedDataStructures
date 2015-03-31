@@ -1,3 +1,4 @@
+package OptionalProject1;
 import java.io.*;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -71,11 +72,12 @@ class Driver{
 						// if stack is EMPTY push the token onto the stack
 						if (operatorStack.isEmpty()){
 							operatorStack.push(token);
+//							continue;
 						// if token equals '(' then push to stack
 						} else if (token.equalsIgnoreCase("(")){
 							operatorStack.push(token);
 						// if token equals ')' pop everything that is not '('
-						} else if (token.equalsIgnoreCase("(")){
+						} else if (token.equalsIgnoreCase(")")){
 							//check if next on stack is '('
 							while (operatorStack.empty() == false && operatorStack.peek().equalsIgnoreCase("(") == false){
 								//add to operandQueue everything that you pop off operator stack
@@ -84,14 +86,37 @@ class Driver{
 							if (operatorStack.isEmpty() == false){
 								operatorStack.pop();
 							}							
-						}
+						} else {
+							
+							if (operatorStack.isEmpty() == false && lowerPriority(token, operatorStack.peek())){
+								operandQueue.add(operatorStack.pop());
+								while (operatorStack.isEmpty() == false){
+									
+									 if (lowerPriority(token, operatorStack.peek())){
+										 operandQueue.add(operatorStack.pop());
+									 } else {
+										 
+										 break;
+									 }
+										
+								}
+							} 
+							
 						// check priority of Ps and Ptop
-						while (operatorStack.isEmpty() == false && lowerPriority(token, operatorStack.peek())){
-							operandQueue.add(operatorStack.pop());
-						}						
-					}
-					operatorStack.push(token);
-					
+//							while (operatorStack.isEmpty() == false){
+//								
+//								 if (lowerPriority(token, operatorStack.peek())){
+//									 operandQueue.add(operatorStack.pop());
+//								 } else {
+//									 
+//									 break;
+//								 }
+//									
+//							}
+							
+						}					
+//						operatorStack.push(token);
+					}				
 				}
 				
 				while (operatorStack.empty() == false){
@@ -121,11 +146,6 @@ class Driver{
 		}			
 	}
 	
-	private boolean isOperator(char c){
-		return c == '+'  ||  c == '-'  ||  c == '*'  ||  c == '/'  ||  c == '^'
-		           || c=='(' || c==')';
-	}
-	
 	
 	/**
 	 * Determines whether first operator has a lower precedence than second operator.
@@ -138,6 +158,15 @@ class Driver{
 	 */
 	private boolean lowerPriority(String firstOperator, String secondOperator){
 		
+		
+		
+		if((firstOperator.equalsIgnoreCase("(")) || (secondOperator.equalsIgnoreCase("(")))
+			return false;
+		
+		if (firstOperator.equalsIgnoreCase(secondOperator) && firstOperator.equalsIgnoreCase("") == false){
+			return true;
+		}
+		
 		switch (firstOperator){
 		
 			case "+":
@@ -147,12 +176,17 @@ class Driver{
 			case "*":
 			case "/":
 				return secondOperator.equalsIgnoreCase("^") || secondOperator.equalsIgnoreCase("(");
+//				return !(secondOperator.equalsIgnoreCase("^") || secondOperator.equalsIgnoreCase("("));
 		
 			case "^":
-				return secondOperator.equalsIgnoreCase("(");
+//				return secondOperator.equalsIgnoreCase("(");
 				
 			case "(":
-				return true;
+				if (firstOperator.equalsIgnoreCase(secondOperator)){
+					return false;
+				} else {
+					return true;
+				}
 				
 			default:
 				return false;
