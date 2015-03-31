@@ -35,12 +35,14 @@ class Driver{
 	 */
 	
 	private Stack<String> operatorStack;
-	private Queue<Double> operandQueue;
+	private Queue<String> operandQueue;
+	private List<String> postfixString;
 	
 	public void runDriver(){
 		
 		operatorStack = new Stack<String>();
-		operandQueue = new LinkedList<Double>();
+		operandQueue = new LinkedList<String>();
+		postfixString = new LinkedList<String>();
 		
 		String expressionEvaluate = "";
 		StringTokenizer st = null;
@@ -56,7 +58,7 @@ class Driver{
 				st = new StringTokenizer(expressionEvaluate);
 				
 				while (st.hasMoreTokens()){
-					token = st.nextToken().toString();
+					token = st.nextToken().toString().trim();
 					
 					Pattern pattern = Pattern.compile("([0-9]*)(\\.[0-9]*)?");
 					Matcher matcher = pattern.matcher(token);
@@ -64,7 +66,7 @@ class Driver{
 					
 					// is a number - enqueue in operandQueue
 					if (matches){
-						operandQueue.add(Double.parseDouble(token));
+						operandQueue.add(token);
 					} else {
 						// if stack is EMPTY push the token onto the stack
 						if (operatorStack.isEmpty()){
@@ -75,17 +77,36 @@ class Driver{
 						// if token equals ')' pop everything that is not '('
 						} else if (token.equalsIgnoreCase("(")){
 							//check if next on stack is '('
-							while (operatorStack.peek().equalsIgnoreCase("(") == false){
+							while (operatorStack.empty() == false && operatorStack.peek().equalsIgnoreCase("(") == false){
 								//add to operandQueue everything that you pop off operator stack
-								operandQueue.add(Double.parseDouble(operatorStack.pop()));
+								operandQueue.add(operatorStack.pop());
 							}
-							operatorStack.pop();
+							if (operatorStack.isEmpty() == false){
+								operatorStack.pop();
+							}							
 						}
-						
-						
+						// check priority of Ps and Ptop
+						while (operatorStack.isEmpty() == false && lowerPriority(token, operatorStack.peek())){
+							operandQueue.add(operatorStack.pop());
+						}						
 					}
+					operatorStack.push(token);
+					
 				}
 				
+				while (operatorStack.empty() == false){
+					operandQueue.add(operatorStack.pop());
+				}
+				
+				postfixString.clear();
+				
+				
+				while (operandQueue.peek() != null){
+					postfixString.add(operandQueue.element());
+					operandQueue.remove();
+				}
+				
+				System.out.println(postfixString);
 				
 			}
 			
@@ -98,6 +119,44 @@ class Driver{
 			System.out.println("IO error trying to read command!");
 			e.printStackTrace();
 		}			
+	}
+	
+	private boolean isOperator(char c){
+		return c == '+'  ||  c == '-'  ||  c == '*'  ||  c == '/'  ||  c == '^'
+		           || c=='(' || c==')';
+	}
+	
+	
+	/**
+	 * Determines whether first operator has a lower precedence than second operator.
+	 * 
+	 * First operator is on the left.  Second operator is on the right.
+	 * 
+	 * @param firstOperator
+	 * @param secondOperator
+	 * @return
+	 */
+	private boolean lowerPriority(String firstOperator, String secondOperator){
+		
+		switch (firstOperator){
+		
+			case "+":
+			case "-":
+				return !(secondOperator.equalsIgnoreCase("+") || secondOperator.equalsIgnoreCase("-"));
+			
+			case "*":
+			case "/":
+				return secondOperator.equalsIgnoreCase("^") || secondOperator.equalsIgnoreCase("(");
+		
+			case "^":
+				return secondOperator.equalsIgnoreCase("(");
+				
+			case "(":
+				return true;
+				
+			default:
+				return false;
+		}
 	}
 
 }
