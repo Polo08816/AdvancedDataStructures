@@ -55,7 +55,11 @@ class BinarySearchTree{
 		
 		readInput(inputIntegers);
 		
-//		printArrayList(inputIntegers);			
+//		printArrayList(inputIntegers);	
+		
+//		System.out.println("Number of leaf nodes: " +root.leafCount(root));
+		
+//		System.out.println("Number of nodes: " +root.countNodes(root));
 		
 	}
 	
