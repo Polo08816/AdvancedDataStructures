@@ -61,6 +61,8 @@ class BinarySearchTree{
 		
 //		System.out.println("Number of nodes: " +root.countNodes(root));
 		
+		
+		
 	}
 	
 	/**
@@ -158,6 +160,8 @@ class BinarySearchTree{
 			System.out.println(temp + seperator);
 		}
 	}
+	
+	
 	
 }
 
@@ -290,6 +294,22 @@ class BinarySearchTreeNode{
 		} else {
 			return 1;
 		}
+	}
+	
+	private BinarySearchTreeNode copyBinarySearchTreeNode(){
+		
+		BinarySearchTreeNode left = null;
+		BinarySearchTreeNode right = null;
+		
+		if (this.left != null){
+			left = this.left.copyBinarySearchTreeNode();
+		}
+		
+		if (this.right != null){
+			right = this.right.copyBinarySearchTreeNode();
+		}
+		
+		return new BinarySearchTreeNode(left, value, right);
 	}
 	
 }

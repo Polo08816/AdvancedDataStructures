@@ -249,9 +249,7 @@ public class OptionalProject2 {
             swap(inputArray, start, k);          // after the indices have crossed, swap the last element in
                                             // the left partition with the pivot 
             quickSort(inputArray, start, k - 1); // quicksort the left partition
-            quickSort(inputArray, k + 1, end);   // quicksort the right partition
-            
-            
+            quickSort(inputArray, k + 1, end);   // quicksort the right partition             
 			
 		} else {
 			return;
@@ -264,6 +262,7 @@ public class OptionalProject2 {
 		array[index1] = array[index2];      // copy the value of the second into the first
 		array[index2] = temp;
 	}
+	
 	
 	
 
