@@ -10,10 +10,13 @@ import java.util.*;
  * 1.  add
  * 2.  search
  * 6.  count leaf nodes
- * 
+ * 5.  count nodes
+ * 9.  copy BSTree
  * 3.  print in order
+ * 
  * 4.  print post order
- * 5.  count nodes* 
+ * 7.  delete
+ * 8.  swap
  *
  */
 
@@ -231,7 +234,7 @@ class BinarySearchTreeNode{
 	 * @param value
 	 * @return boolean True if value found.  False if value has not been found.
 	 */
-	public boolean search(int value){
+	public boolean searchValue(int value){
 		//if value is found in root node
 		if (value == this.value){
 			return true;
@@ -242,7 +245,7 @@ class BinarySearchTreeNode{
 				return false;
 			} else {
 				//left child exists - do recursion
-				return left.search(value);
+				return left.searchValue(value);
 			}
 		// if value is greater than root node go to search right child
 		} else if (value > this.value){
@@ -251,7 +254,7 @@ class BinarySearchTreeNode{
 				return false;
 			//right child exists - do recursion
 			} else {
-				return right.search(value);
+				return right.searchValue(value);
 			}
 		}
 		return false;
@@ -296,20 +299,62 @@ class BinarySearchTreeNode{
 		}
 	}
 	
-	private BinarySearchTreeNode copyBinarySearchTreeNode(){
+	/**
+	 * Performs a deep copy from the specified BinarySearchTreeNode.
+	 * 
+	 * @return
+	 */
+	private BinarySearchTreeNode copyBinarySearchTreeNode(BinarySearchTreeNode root){
 		
 		BinarySearchTreeNode left = null;
 		BinarySearchTreeNode right = null;
 		
-		if (this.left != null){
-			left = this.left.copyBinarySearchTreeNode();
+		if (root.left != null){
+			left = copyBinarySearchTreeNode(root.left);
 		}
 		
-		if (this.right != null){
-			right = this.right.copyBinarySearchTreeNode();
+		if (root.right != null){
+			right = copyBinarySearchTreeNode(root.right);
 		}
 		
 		return new BinarySearchTreeNode(left, value, right);
+	}
+	
+	/**
+	 * Performs a In Order traversal and prints the nodes.
+	 * 
+	 * @param seed
+	 */
+	public void inOrderTraversal(BinarySearchTreeNode seed){
+		
+		if (seed.left != null ){
+			inOrderTraversal(seed.left);
+		}
+		
+		System.out.print("In-order traversal: " + seed.value + ", ");
+		
+		if (seed.right != null){
+			inOrderTraversal(seed.right);
+		}			
+	}
+	
+	/**
+	 * Performs a Post Order traversal and prints the nodes.
+	 * 
+	 * @param seed
+	 */
+	public void postOrderTraversal(BinarySearchTreeNode seed){
+		
+		if (seed.left != null ){
+			inOrderTraversal(seed.left);
+		}
+		
+		if (seed.right != null){
+			inOrderTraversal(seed.right);
+		}	
+		
+		System.out.print("Post-order traversal: " + seed.value + ", ");
+		
 	}
 	
 }
