@@ -13,8 +13,9 @@ import java.util.*;
  * 5.  count nodes
  * 9.  copy BSTree
  * 3.  print in order
+ * 4. print post order
  * 
- * 4.  print post order
+
  * 7.  delete
  * 8.  swap
  *
@@ -162,6 +163,24 @@ class BinarySearchTree{
 			String seperator = "\t";
 			System.out.println(temp + seperator);
 		}
+	}
+	
+	public boolean removeOperation(int value){
+		
+		if (root == null){
+			return false;
+		} else {
+			if (root.value == value){
+				BinarySearchTreeNode newRoot = new BinarySearchTreeNode(null, 0, null);
+				newRoot.left = root;
+				boolean result = root.removeBinarySearhTreeNode(value, newRoot);
+				root = newRoot.left;
+				return result;
+			} else {
+				return root.removeBinarySearhTreeNode(value, null);
+			}
+		}		
+		
 	}
 	
 	
@@ -355,6 +374,44 @@ class BinarySearchTreeNode{
 		
 		System.out.print("Post-order traversal: " + seed.value + ", ");
 		
+	}
+	
+	public boolean removeBinarySearhTreeNode(int value, BinarySearchTreeNode parent){
+		
+		if (value < this.value){
+			if (left != null){
+				return left.removeBinarySearhTreeNode(value, this);
+			} else {
+				return false;
+			}
+			
+		} else if (value > this.value){
+			if (right != null){
+				return right.removeBinarySearhTreeNode(value,  this);
+			} else {
+				return false;
+			}
+		} else {
+			if (left != null && right != null){
+				this.value = right.minValue();
+				right.removeBinarySearhTreeNode(this.value, this);
+			} else if (parent.left == this){
+				parent.left = (left != null) ? left : right;
+			} else if (parent.right == this){
+				parent.right = (left != null ? left : right);
+			}
+			return true;
+		}
+		
+	}
+	
+	public int minValue(){
+		
+		if (left == null){
+			return value;
+		} else {
+			return left.minValue();
+		}
 	}
 	
 }
