@@ -207,6 +207,20 @@ class BinarySearchTree{
 	}
 	
 	
+	/**
+	 * 
+	 * http://stackoverflow.com/questions/9597188/the-most-efficient-way-to-test-two-binary-trees-for-equality
+	 * 
+	 * @param t1
+	 * @param t2
+	 * @return
+	 */
+	public boolean compareOperation(BinarySearchTree t1, BinarySearchTree t2){
+		
+		 return false;
+	}
+	
+	
 	
 }
 

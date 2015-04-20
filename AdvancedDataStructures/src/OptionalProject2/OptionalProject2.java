@@ -15,8 +15,8 @@ import java.util.*;
  * 1.  Generate a file of 20,000 random numbers.
  * 2.  Read random numbers from file into <file structure>
  * 3.  Analyze system time for the following algorithms:
- * 		a.	Insertion sort
- * 		b.	Quick sort
+ * 		a.	Insertion sort x
+ * 		b.	Quick sort x
  * 		c.	Merge sort
  * 		d.  Heap sort
  */
@@ -56,14 +56,45 @@ public class OptionalProject2 {
 		System.arraycopy(baseIntegerArray, 0, heapSortArray, 0, 19999);
 		
 //		printIntegerArray(insertionSortArray);
+		
+		//Insertion Sort
 		insertionSort(insertionSortArray);
 		
+		
+		//Quick Sort
 		System.out.println("\nTesting QUICK sort.");
 		long beginTime, endTime;
 		beginTime = System.currentTimeMillis();
 		System.out.println("Begin: " + beginTime);
 		
 		quickSort(quickSortArray, 0, 19999);
+		
+		endTime = System.currentTimeMillis();
+		System.out.println("End: " + endTime);
+		System.out.println("Total: "  + (endTime - beginTime));
+		
+		
+		
+		//Merge Sort
+		
+		System.out.println("\nTesting MERGE sort.");
+		beginTime = System.currentTimeMillis();
+		System.out.println("Begin: " + beginTime);
+		
+//		quickSort(quickSortArray, 0, 19999);
+		
+		endTime = System.currentTimeMillis();
+		System.out.println("End: " + endTime);
+		System.out.println("Total: "  + (endTime - beginTime));
+		
+		
+		//Heap Sort
+		
+		System.out.println("\nTesting HEAP sort.");
+		beginTime = System.currentTimeMillis();
+		System.out.println("Begin: " + beginTime);
+		
+//		quickSort(quickSortArray, 0, 19999);
 		
 		endTime = System.currentTimeMillis();
 		System.out.println("End: " + endTime);
@@ -264,6 +295,56 @@ public class OptionalProject2 {
 	}
 	
 	
+	private static void mergeSort(int[] inputArray) {
+//        this.array = inputArr;
+//        this.length = inputArr.length;
+//        this.tempMergArr = new int[length];
+//        doMergeSort(0, length - 1);
+		
+		int length = inputArray.length;		
+		int[] tempArray = new int[length];
+		
+		doMergeSort(0, length -1, inputArray, tempArray);
+		
+    }
+ 
+    private static void doMergeSort(int lowIndex, int highIndex, int[] inputArray, int[] tempArray) {
+         
+        if (lowIndex < highIndex) {
+            int middle = lowIndex + (highIndex - lowIndex) / 2;
+            // Below step sorts the left side of the array
+            doMergeSort(lowIndex, middle, inputArray, tempArray);
+            // Below step sorts the right side of the array
+            doMergeSort(middle + 1, lowIndex, inputArray, tempArray);
+            // Now merge both sides
+//            mergeParts(lowIndex, middle, highIndex);
+        }
+    }
+// 
+//    private void mergeParts(int lowerIndex, int middle, int higherIndex) {
+// 
+//        for (int i = lowerIndex; i <= higherIndex; i++) {
+//            tempMergArr[i] = array[i];
+//        }
+//        int i = lowerIndex;
+//        int j = middle + 1;
+//        int k = lowerIndex;
+//        while (i <= middle && j <= higherIndex) {
+//            if (tempMergArr[i] <= tempMergArr[j]) {
+//                array[k] = tempMergArr[i];
+//                i++;
+//            } else {
+//                array[k] = tempMergArr[j];
+//                j++;
+//            }
+//            k++;
+//        }
+//        while (i <= middle) {
+//            array[k] = tempMergArr[i];
+//            k++;
+//            i++;
+//        }
+//    }
 	
 
 }
