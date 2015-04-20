@@ -15,8 +15,8 @@ import java.util.*;
  * 3.  print in order
  * 4. print post order
  * 7.  delete
- * 
  * 8.  swap
+ * 
  *
  */
 
@@ -29,8 +29,27 @@ public class Project5 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		//read integers and construct tree T1
 		BinarySearchTree T1 = new BinarySearchTree();
 		T1.runBTO();
+		
+		//print T1 INORDER
+		
+		//count number of LEAF nodes on T1
+		
+		//SWAP nodes on T1 and create T2
+		
+		//print POST order of T2
+		
+		//read another sequences of integers for T3
+		
+		//compare if T1 is equal to T3
+		
+		//delete node 15 from T3
+		
+		//print IN ORDER after deletion
+		
+		//display 5th node of T3 IN ORDEDR
 
 	}
 
@@ -380,6 +399,15 @@ class BinarySearchTreeNode{
 		
 	}
 	
+	/**
+	 * Removes a BinarySearchTreeNode with the specified value.
+	 * 
+	 * Note: A value only appears once in a BinarySearchTree so there should be no duplicates.
+	 * 
+	 * @param value
+	 * @param parent
+	 * @return
+	 */
 	public boolean removeBinarySearhTreeNode(int value, BinarySearchTreeNode parent){
 		
 		if (value < this.value){
@@ -419,6 +447,25 @@ class BinarySearchTreeNode{
 	}
 	
 	public boolean swapChildren(BinarySearchTreeNode swapNode){
+		
+		if (swapNode != null){
+			
+			if (swapNode.left != null){
+				swapChildren(swapNode.left);
+			}
+			
+			if (swapNode.right != null){
+				swapChildren(swapNode.right);
+			}
+			
+			BinarySearchTreeNode temp;
+			temp = swapNode.left;
+			swapNode.right = swapNode.left;
+			swapNode.left = temp;
+			
+			return true;
+			
+		}
 		
 		return false;
 		
