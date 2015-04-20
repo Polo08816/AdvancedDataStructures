@@ -14,9 +14,8 @@ import java.util.*;
  * 9.  copy BSTree
  * 3.  print in order
  * 4. print post order
- * 
-
  * 7.  delete
+ * 
  * 8.  swap
  *
  */
@@ -181,6 +180,11 @@ class BinarySearchTree{
 			}
 		}		
 		
+	}
+	
+	public boolean swapOperation(BinarySearchTreeNode root){
+		
+		return false;
 	}
 	
 	
@@ -412,6 +416,12 @@ class BinarySearchTreeNode{
 		} else {
 			return left.minValue();
 		}
+	}
+	
+	public boolean swapChildren(BinarySearchTreeNode swapNode){
+		
+		return false;
+		
 	}
 	
 }
