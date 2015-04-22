@@ -1,3 +1,4 @@
+package Project5;
 import java.io.*;
 import java.util.*;
 
@@ -13,7 +14,7 @@ import java.util.*;
  * 5.  count nodes
  * 9.  copy BSTree
  * 3.  print in order
- * 4. print post order
+ * 4.  print post order
  * 7.  delete
  * 8.  swap
  * 
@@ -35,22 +36,75 @@ public class Project5 {
 		
 		//print T1 INORDER
 		
+		System.out.print("T1 In-order traversal: ");
+		T1.root.inOrderTraversal(T1.root);
+//		System.out.print("\nT1 Post-order traversal: ");
+//		T1.root.postOrderTraversal(T1.root);
+		
 		//count number of LEAF nodes on T1
 		
+		System.out.print("\nT1 leaf count: ");
+		System.out.print(T1.root.leafCount(T1.root) + "\n");
+		
 		//SWAP nodes on T1 and create T2
+		BinarySearchTree T2 = new BinarySearchTree();
+		T2.root = T1.root.copyBinarySearchTreeNode(T1.root);
+		
+		
+		T2.root.swapChildren(T2.root);
 		
 		//print POST order of T2
 		
+//		System.out.print("\n\nT2 In-order traversal: ");
+//		T2.root.inOrderTraversal(T2.root);
+		System.out.print("\nT2 Post-order traversal: ");
+		T2.root.postOrderTraversal(T2.root);
+		
+		//compare if T1 is equal to T2
+		
+		System.out.print("\n\nCompare T1 to T2: " + T1.compareOperation(T1.root, T2.root));
+		
 		//read another sequences of integers for T3
+		
+		System.out.println("\n\nFor T3...");
+		BinarySearchTree T3 = new BinarySearchTree();
+		T3.runBTO();
 		
 		//compare if T1 is equal to T3
 		
+		System.out.print("\n\nCompare T1 to T3: " + T1.compareOperation(T1.root, T3.root));
+		
 		//delete node 15 from T3
+		
+		System.out.print("\nDelete 15 from T3... ");
+		T3.removeOperation(15);
+		
+		System.out.print("Deleting '15' done. ");
 		
 		//print IN ORDER after deletion
 		
-		//display 5th node of T3 IN ORDEDR
+		System.out.print("\nT3 In-order traversal: ");
+		T1.root.inOrderTraversal(T3.root);
+		
+		//display 5th node of T3 IN ORDED
 
+		String stString = "";
+		stString = T3.root.inOrderTraversalDisplaySpecificNode(T3.root, stString);
+		
+		StringTokenizer st = new StringTokenizer(stString, ",");
+		
+		int count = 1;
+		
+		while (st.hasMoreElements()){
+			String temp = st.nextToken();
+			if (count == 5){
+				System.out.println("\n5th node of T3: " + temp);
+				break;
+			}
+			count++;
+		}
+		
+		System.out.print("\n\nDone. ");
 	}
 
 }
@@ -76,14 +130,7 @@ class BinarySearchTree{
 		inputIntegers = new ArrayList<Integer>();
 		
 		readInput(inputIntegers);
-		
-//		printArrayList(inputIntegers);	
-		
-//		System.out.println("Number of leaf nodes: " +root.leafCount(root));
-		
-//		System.out.println("Number of nodes: " +root.countNodes(root));
-		
-		
+			
 		
 	}
 	
@@ -115,7 +162,7 @@ class BinarySearchTree{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		
-		System.out.println("Enter a list of integers separated by a comma: \n");
+		System.out.println("\n\nEnter a list of integers separated by a comma: \n");
 		
 		//tokenize input string
 		try {
@@ -133,7 +180,7 @@ class BinarySearchTree{
 				addOperation(temp);
 			}
 			
-			System.out.println("ArrayList<Integer> inputIntegersArray size :" + al.size() + "\n");
+//			System.out.println("ArrayList<Integer> inputIntegersArray size :" + al.size() + "\n");
 		} catch (NumberFormatException h){
 			al.clear();
 			System.out.println("\nWarning: Not all elements were able to be parsed correctly.\nCheck the delimiters used in input file.\n");
@@ -215,9 +262,21 @@ class BinarySearchTree{
 	 * @param t2
 	 * @return
 	 */
-	public boolean compareOperation(BinarySearchTree t1, BinarySearchTree t2){
+	public boolean compareOperation(BinarySearchTreeNode root1, BinarySearchTreeNode root2){
 		
-		 return false;
+		if (root1 == root2){
+			return true;
+		}
+		
+		if (root1 == null || root2 == null){
+			return false;
+		}
+		
+
+		
+		return ( (root1.value == root2.value) &&				
+				compareOperation(root1.left, root2.left) &&
+				compareOperation(root1.right, root2.right));
 	}
 	
 	
@@ -360,7 +419,7 @@ class BinarySearchTreeNode{
 	 * 
 	 * @return
 	 */
-	private BinarySearchTreeNode copyBinarySearchTreeNode(BinarySearchTreeNode root){
+	public BinarySearchTreeNode copyBinarySearchTreeNode(BinarySearchTreeNode root){
 		
 		BinarySearchTreeNode left = null;
 		BinarySearchTreeNode right = null;
@@ -373,7 +432,7 @@ class BinarySearchTreeNode{
 			right = copyBinarySearchTreeNode(root.right);
 		}
 		
-		return new BinarySearchTreeNode(left, value, right);
+		return new BinarySearchTreeNode(left, root.value, right);
 	}
 	
 	/**
@@ -381,17 +440,32 @@ class BinarySearchTreeNode{
 	 * 
 	 * @param seed
 	 */
-	public void inOrderTraversal(BinarySearchTreeNode seed){
+	public static void inOrderTraversal(BinarySearchTreeNode seed){
 		
 		if (seed.left != null ){
 			inOrderTraversal(seed.left);
 		}
 		
-		System.out.print("In-order traversal: " + seed.value + ", ");
+		System.out.print(seed.value + ", ");
 		
 		if (seed.right != null){
 			inOrderTraversal(seed.right);
 		}			
+	}
+	
+	public static String inOrderTraversalDisplaySpecificNode(BinarySearchTreeNode seed, String temp){
+		
+		if (seed.left != null ){
+			temp = inOrderTraversalDisplaySpecificNode(seed.left, temp);
+		}
+		
+		temp = temp + String.valueOf(seed.value) + ",";
+		
+		if (seed.right != null){
+			temp = inOrderTraversalDisplaySpecificNode(seed.right, temp);
+		}
+		
+		return temp;
 	}
 	
 	/**
@@ -402,14 +476,14 @@ class BinarySearchTreeNode{
 	public void postOrderTraversal(BinarySearchTreeNode seed){
 		
 		if (seed.left != null ){
-			inOrderTraversal(seed.left);
+			postOrderTraversal(seed.left);
 		}
 		
 		if (seed.right != null){
-			inOrderTraversal(seed.right);
+			postOrderTraversal(seed.right);
 		}	
 		
-		System.out.print("Post-order traversal: " + seed.value + ", ");
+		System.out.print(+ seed.value + ", ");
 		
 	}
 	
@@ -474,8 +548,8 @@ class BinarySearchTreeNode{
 			
 			BinarySearchTreeNode temp;
 			temp = swapNode.left;
-			swapNode.right = swapNode.left;
-			swapNode.left = temp;
+			swapNode.left = swapNode.right;
+			swapNode.right = temp;
 			
 			return true;
 			
