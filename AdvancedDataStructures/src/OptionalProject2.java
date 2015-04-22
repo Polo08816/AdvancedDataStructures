@@ -1,7 +1,7 @@
 /**
  * 
  */
-package OptionalProject2;
+
 
 import java.io.*;
 import java.util.*;
@@ -81,7 +81,7 @@ public class OptionalProject2 {
 		beginTime = System.currentTimeMillis();
 		System.out.println("Begin: " + beginTime);
 		
-//		quickSort(quickSortArray, 0, 19999);
+		mergeSort(mergeSortArray);
 		
 		endTime = System.currentTimeMillis();
 		System.out.println("End: " + endTime);
@@ -94,7 +94,7 @@ public class OptionalProject2 {
 		beginTime = System.currentTimeMillis();
 		System.out.println("Begin: " + beginTime);
 		
-//		quickSort(quickSortArray, 0, 19999);
+		heapSort(quickSortArray);
 		
 		endTime = System.currentTimeMillis();
 		System.out.println("End: " + endTime);
@@ -266,21 +266,21 @@ public class OptionalProject2 {
 		
 		if (end - start >= 1){
 			
-			int pivot = inputArray[start];       // set the pivot as the first element in the partition
+			int pivot = inputArray[start];       
 
-            while (k > i)                   // while the scan indices from left and right have not met,
+            while (k > i)                   
             {
-                    while (inputArray[i] <= pivot && i <= end && k > i)  // from the left, look for the first
-                            i++;                                    // element greater than the pivot
-                    while (inputArray[k] > pivot && k >= start && k >= i) // from the right, look for the first
-                        k--;                                        // element not greater than the pivot
-                    if (k > i)                                       // if the left seekindex is still smaller than
-                            swap(inputArray, i, k);                      // the right index, swap the corresponding elements
+                    while (inputArray[i] <= pivot && i <= end && k > i)  
+                            i++;                                    
+                    while (inputArray[k] > pivot && k >= start && k >= i) 
+                        k--;                                        
+                    if (k > i)                                      
+                            swap(inputArray, i, k);                      
             }
-            swap(inputArray, start, k);          // after the indices have crossed, swap the last element in
-                                            // the left partition with the pivot 
-            quickSort(inputArray, start, k - 1); // quicksort the left partition
-            quickSort(inputArray, k + 1, end);   // quicksort the right partition             
+            swap(inputArray, start, k);          
+                                           
+            quickSort(inputArray, start, k - 1); 
+            quickSort(inputArray, k + 1, end);                
 			
 		} else {
 			return;
@@ -296,55 +296,92 @@ public class OptionalProject2 {
 	
 	
 	private static void mergeSort(int[] inputArray) {
-//        this.array = inputArr;
-//        this.length = inputArr.length;
-//        this.tempMergArr = new int[length];
-//        doMergeSort(0, length - 1);
+				
+		int[] tempArray = new int[inputArray.length];
 		
-		int length = inputArray.length;		
-		int[] tempArray = new int[length];
-		
-		doMergeSort(0, length -1, inputArray, tempArray);
+		doMergeSort(inputArray, tempArray, 0, inputArray.length - 1);
 		
     }
  
-    private static void doMergeSort(int lowIndex, int highIndex, int[] inputArray, int[] tempArray) {
+    private static void doMergeSort(int[] inputArray, int[] tempArray, int lowIndex, int highIndex) {
          
-        if (lowIndex < highIndex) {
-            int middle = lowIndex + (highIndex - lowIndex) / 2;
-            // Below step sorts the left side of the array
-            doMergeSort(lowIndex, middle, inputArray, tempArray);
-            // Below step sorts the right side of the array
-            doMergeSort(middle + 1, lowIndex, inputArray, tempArray);
-            // Now merge both sides
-//            mergeParts(lowIndex, middle, highIndex);
-        }
+    	if (highIndex <= lowIndex){
+    		return;
+    	} 
+    	
+		int middle = (highIndex + lowIndex) / 2;
+        // Below step sorts the left side of the array
+        doMergeSort(inputArray, tempArray, lowIndex, middle);
+        // Below step sorts the right side of the array
+        doMergeSort(inputArray, tempArray, middle + 1, highIndex);
+        // Now merge both sides
+        mergeParts(inputArray, tempArray, lowIndex, middle, highIndex);
+
     }
-// 
-//    private void mergeParts(int lowerIndex, int middle, int higherIndex) {
-// 
-//        for (int i = lowerIndex; i <= higherIndex; i++) {
-//            tempMergArr[i] = array[i];
-//        }
-//        int i = lowerIndex;
-//        int j = middle + 1;
-//        int k = lowerIndex;
-//        while (i <= middle && j <= higherIndex) {
-//            if (tempMergArr[i] <= tempMergArr[j]) {
-//                array[k] = tempMergArr[i];
-//                i++;
-//            } else {
-//                array[k] = tempMergArr[j];
-//                j++;
-//            }
-//            k++;
-//        }
-//        while (i <= middle) {
-//            array[k] = tempMergArr[i];
-//            k++;
-//            i++;
-//        }
-//    }
+
+    private static void mergeParts(int[] inputArray, int[] tempArray, int lowerIndex, int middle, int higherIndex) {
+ 
+        for (int i = lowerIndex; i <= higherIndex; i++) {
+        	tempArray[i] = inputArray[i];
+        }
+        
+        int i = lowerIndex;
+        int j = middle + 1;
+        int k = lowerIndex;
+        
+        while (i <= middle && j <= higherIndex) {
+            if (tempArray[i] <= tempArray[j]) {
+            	inputArray[k] = tempArray[i];
+                i++;
+            } else {
+            	inputArray[k] = tempArray[j];
+                j++;
+            }
+            k++;
+        }
+        
+        while (i <= middle) {
+        	inputArray[k] = tempArray[i];
+            k++;
+            i++;
+        }
+        
+    }
+    
+    private static void heapSort(int[] inputArray){
+    	
+    	int heapSize = inputArray.length - 1;
+    	
+    	for (int i = (heapSize/2); i >= 0; i--){
+    		heapIt(inputArray, i, heapSize);
+    	}
+    	
+    	for (int j = (heapSize); j > 0; j--){
+    		swap(inputArray, 0, j);
+    		heapSize--;
+    		heapIt(inputArray, 0, heapSize);
+    	}
+    	
+    }
+    
+    private static void heapIt(int[] heapArray, int heapIndex, int heapSize){
+    	
+    	int leftIndex = heapIndex * 2;
+    	int rightIndex = (leftIndex + 1);
+    	int highestIndex = heapIndex;
+    	
+    	if ((leftIndex <= heapSize) && (heapArray[leftIndex] > heapArray[heapIndex])){
+    		highestIndex = leftIndex;
+		}
+		if ((rightIndex <= heapSize) && (heapArray[rightIndex] > heapArray[highestIndex])){
+			highestIndex = rightIndex;
+		}
+		if (highestIndex != heapIndex){
+			swap(heapArray, heapIndex, highestIndex);
+			heapIt(heapArray, highestIndex, heapSize);
+		}
+    }
+
 	
 
 }
