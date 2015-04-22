@@ -1,0 +1,21 @@
+Current working directory: C:\Users\J14688\git\AdvancedDataStructures\AdvancedDataStructures\OptionalProject2_Input.txt
+
+Testing INSERTION sort.
+Begin: 1429671431612
+End: 1429671431743
+Total: 131
+
+Testing QUICK sort.
+Begin: 1429671431743
+End: 1429671431747
+Total: 4
+
+Testing MERGE sort.
+Begin: 1429671431747
+End: 1429671431750
+Total: 3
+
+Testing HEAP sort.
+Begin: 1429671431750
+End: 1429671431754
+Total: 4

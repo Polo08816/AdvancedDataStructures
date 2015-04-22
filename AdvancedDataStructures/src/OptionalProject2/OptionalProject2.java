@@ -1,3 +1,4 @@
+package OptionalProject2;
 /**
  * 
  */
@@ -353,33 +354,42 @@ public class OptionalProject2 {
     	int heapSize = inputArray.length - 1;
     	
     	for (int i = (heapSize/2); i >= 0; i--){
-    		heapIt(inputArray, i, heapSize);
+    		doHeapSort(inputArray, i, heapSize);
     	}
     	
     	for (int j = (heapSize); j > 0; j--){
     		swap(inputArray, 0, j);
     		heapSize--;
-    		heapIt(inputArray, 0, heapSize);
+    		doHeapSort(inputArray, 0, heapSize);
     	}
     	
     }
     
-    private static void heapIt(int[] heapArray, int heapIndex, int heapSize){
+    private static void doHeapSort(int[] heapArray, int heapIndex, int heapSize){
     	
     	int leftIndex = heapIndex * 2;
     	int rightIndex = (leftIndex + 1);
     	int highestIndex = heapIndex;
     	
     	if ((leftIndex <= heapSize) && (heapArray[leftIndex] > heapArray[heapIndex])){
+    		
     		highestIndex = leftIndex;
+    		
 		}
+    	
 		if ((rightIndex <= heapSize) && (heapArray[rightIndex] > heapArray[highestIndex])){
+			
 			highestIndex = rightIndex;
+			
 		}
+		
 		if (highestIndex != heapIndex){
+			
 			swap(heapArray, heapIndex, highestIndex);
-			heapIt(heapArray, highestIndex, heapSize);
+			doHeapSort(heapArray, highestIndex, heapSize);
+			
 		}
+		
     }
 
 	
