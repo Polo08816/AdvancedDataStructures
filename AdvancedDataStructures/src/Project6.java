@@ -12,16 +12,117 @@ public class Project6 {
 		ArrayList<String> statesArray = new ArrayList<String>();
 		statesArray = dr.readFileStates(statesArray, "project6_inputState.txt");
 		
-//		dr.printArrayList(statesArray);
+//		dr.printArrayList(statesArray);		
+		
+		Graph stateGraph = new Graph();		
+		stateGraph.populateGraphArraywithStateArray(statesArray);
 		
 		
 
 	}
-	
-	
 
 }
 
+class Graph{
+	
+	ArrayList<GraphNode> graphNodeArray;
+	
+	public Graph(){
+		
+		this.graphNodeArray = new ArrayList<GraphNode>();
+		
+	}
+	
+	public void addGraphNode(GraphNode graphNode){
+		
+		this.graphNodeArray.add(graphNode);
+		
+	}
+	
+	public GraphNode getGraphNode(int index){
+		
+		if (graphNodeArray.size() < index){
+			return null;
+		}
+		
+		try{
+			return graphNodeArray.get(index);
+		} catch (IndexOutOfBoundsException e){
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	/**
+	 * Populate graphNodeArray with Strings from inputArray.
+	 * 
+	 * @param inputArray ArrayList of String
+	 */
+	public void populateGraphArraywithStateArray(ArrayList<String> inputArray){
+				
+		Iterator<String> it = inputArray.iterator();
+		
+		while (it.hasNext()){
+//			System.out.println(it.next().toString());
+			GraphNode temp = new GraphNode(inputArray.indexOf(it.next()));
+			this.graphNodeArray.add(temp);
+			
+		}
+	}
+	
+	
+	
+}
+
+
+class GraphNode{
+	
+	private int nodeValue;
+	private LinkedList<Integer> adjacentStates;
+	private int colorValue;
+	
+	public GraphNode(int nodeValue){
+		this.nodeValue = nodeValue;
+		this.adjacentStates = new LinkedList<Integer>();
+	}
+	
+	/**
+	 * @return the nodeValue
+	 */
+	private int getNodeValue() {
+		return nodeValue;
+	}
+
+	/**
+	 * @param nodeValue the nodeValue to set
+	 */
+	private void setNodeValue(int nodeValue) {
+		this.nodeValue = nodeValue;
+	}
+
+	/**
+	 * @return the colorValue
+	 */
+	private int getColorValue() {
+		return colorValue;
+	}
+
+	/**
+	 * @param colorValue the colorValue to set
+	 */
+	private void setColorValue(int colorValue) {
+		this.colorValue = colorValue;
+	}
+
+	/**
+	 * @return the adjacentStates
+	 */
+	private LinkedList<Integer> getAdjacentStates() {
+		return adjacentStates;
+	}
+
+}
 
 class Driver{
 	
@@ -48,6 +149,7 @@ class Driver{
 				st = new StringTokenizer(line);
 				while (st.hasMoreTokens()){
 					try {
+						
 						tempLine = tempLine + " " + st.nextToken();
 						
 					} catch (NumberFormatException h){
@@ -89,11 +191,5 @@ class Driver{
 			System.out.println(it.next().toString());			
 		}
 	}
-	
-}
-
-class GraphNode{
-	
-	
 	
 }
