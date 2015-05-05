@@ -31,6 +31,9 @@ public class Project6 {
 		
 		stateGraph.depthFirstSearch(stateGraph, 1, visitedArray, statesArray);
 
+		
+		System.out.println("\nBreadth First Search:\n");
+		Arrays.fill(visitedArray, false);
 	}
 
 }
@@ -109,7 +112,18 @@ class Graph{
 	
 	public void breadthFirstSearch(Graph graphObject, int startState, boolean[] visitedArray, ArrayList<String> statesArray){
 		
+		Queue q = new LinkedList<GraphNode>();
 		
+		q.add(graphObject.getGraphNode(startState));
+		
+		System.out.println(statesArray.get(startState));
+		visitedArray[startState] = true;
+		
+		while(!q.isEmpty()){
+			GraphNode n = (GraphNode)q.remove();
+			GraphNode child = null;
+			
+		}
 		
 	}
 	
