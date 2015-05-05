@@ -14,12 +14,22 @@ public class Project6 {
 		
 		dr.printArrayList(statesArray);		
 		
+		boolean[] visitedArray = new boolean[49];
+		Arrays.fill(visitedArray, false);
+		
+		System.out.println("Size of visitedArray: " + visitedArray.length);
+
 		Graph stateGraph = new Graph();		
 		stateGraph.populateGraphArraywithStateArray(statesArray);
 		
 		dr.readFileAdjacentStates(stateGraph.graphNodeArray, "project6_inputAdjacency.txt");
 		
 		dr.printGraphArrayList(stateGraph.graphNodeArray);
+		
+		
+		System.out.println("\nDepth First Search:\n");
+		
+		stateGraph.depthFirstSearch(stateGraph, 1, visitedArray, statesArray);
 
 	}
 
@@ -38,8 +48,7 @@ class Graph{
 	
 	public void addGraphNode(GraphNode graphNode){
 		
-		this.graphNodeArray.add(graphNode);
-		
+		this.graphNodeArray.add(graphNode);		
 		
 	}
 	
@@ -80,6 +89,30 @@ class Graph{
 		}
 	}
 	
+	public void depthFirstSearch(Graph graphObject, int startState, boolean[] visitedArray, ArrayList<String> statesArray){
+		
+		if (!visitedArray[startState]){
+			visitedArray[startState] = true; //visited == FALSE
+		} else {
+			return; //visited == TRUE; base case
+		}
+		
+		System.out.print(graphObject.getGraphNode(startState).toStringStateOnly(statesArray));
+		
+		Iterator it = graphObject.getGraphNode(startState).getAdjacentStates().iterator();
+	
+		while(it.hasNext()){
+			depthFirstSearch(graphObject, Integer.parseInt(it.next().toString()), visitedArray, statesArray);
+		}
+
+	}
+	
+	public void breadthFirstSearch(Graph graphObject, int startState, boolean[] visitedArray, ArrayList<String> statesArray){
+		
+		
+		
+	}
+	
 	
 	
 }
@@ -99,7 +132,7 @@ class GraphNode{
 	/**
 	 * @return the nodeValue
 	 */
-	private int getNodeValue() {
+	public int getNodeValue() {
 		return nodeValue;
 	}
 
@@ -113,21 +146,21 @@ class GraphNode{
 	/**
 	 * @return the colorValue
 	 */
-	private int getColorValue() {
+	public int getColorValue() {
 		return colorValue;
 	}
 
 	/**
 	 * @param colorValue the colorValue to set
 	 */
-	private void setColorValue(int colorValue) {
+	public void setColorValue(int colorValue) {
 		this.colorValue = colorValue;
 	}
 
 	/**
 	 * @return the adjacentStates
 	 */
-	private LinkedList<Integer> getAdjacentStates() {
+	public LinkedList<Integer> getAdjacentStates() {
 		return adjacentStates;
 	}
 	
@@ -138,7 +171,7 @@ class GraphNode{
 		this.adjacentStates.add(stateInt);
 	}
 	
-	private int searchAdjacentState(int stateInt){
+	public int searchAdjacentState(int stateInt){
 		Iterator<Integer> it = this.adjacentStates.iterator();
 		return 1;
 	}
@@ -146,6 +179,13 @@ class GraphNode{
 	public String toString(){		
 		
 		return "State number: " + this.nodeValue + " \nLinkedList size: " + this.adjacentStates.size() + "\nLinkedList contents: " + this.adjacentStates.toString() + " \n";
+		
+	}
+	
+	public String toStringStateOnly(ArrayList<String> statesArray){		
+		
+		return statesArray.get(this.nodeValue) + " -> ";
+		
 	}
 
 }
