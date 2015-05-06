@@ -32,8 +32,13 @@ public class Project6 {
 		stateGraph.depthFirstSearch(stateGraph, 1, visitedArray, statesArray);
 
 		
-		System.out.println("\nBreadth First Search:\n");
+		System.out.println("\n\n\nBreadth First Search:\n");
 		Arrays.fill(visitedArray, false);
+		
+		stateGraph.breadthFirstSearch(stateGraph, 1, visitedArray, statesArray);
+		
+		
+		
 	}
 
 }
@@ -116,12 +121,49 @@ class Graph{
 		
 		q.add(graphObject.getGraphNode(startState));
 		
-		System.out.println(statesArray.get(startState));
-		visitedArray[startState] = true;
+		int[] levelArray = new int[49];
+		int level = 0;
 		
-		while(!q.isEmpty()){
+		boolean addLevel = false;
+		
+		visitedArray[startState] = true;
+		levelArray[startState] = level;	
+		
+		level++;
+		
+		while(!q.isEmpty()){			
+			
 			GraphNode n = (GraphNode)q.remove();
+			
+			if (addLevel == true){
+				level++;
+				addLevel = false;
+			}
+
+			System.out.println(n.toStringStateOnly(statesArray) + "Level: " + levelArray[n.getNodeValue()]);
+			
 			GraphNode child = null;
+			
+			Iterator<Integer> it = n.getAdjacentStates().iterator();
+			
+			while (it.hasNext()){				
+				
+				int index = Integer.parseInt(it.next().toString());				
+				
+				if(visitedArray[index] == false){
+					
+					child =  graphObject.getGraphNode(index);
+					
+					q.add(child);
+					
+					levelArray[child.getNodeValue()] = level;
+					
+					visitedArray[index] = true;
+					
+					addLevel = true;
+					
+				}
+			}						
 			
 		}
 		
@@ -137,6 +179,7 @@ class GraphNode{
 	private int nodeValue;
 	private LinkedList<Integer> adjacentStates;
 	private int colorValue;
+	private int bfsLevelValue;
 	
 	public GraphNode(int nodeValue){
 		this.nodeValue = nodeValue;
@@ -188,6 +231,20 @@ class GraphNode{
 	public int searchAdjacentState(int stateInt){
 		Iterator<Integer> it = this.adjacentStates.iterator();
 		return 1;
+	}
+
+	/**
+	 * @return the levelValue
+	 */
+	private int getLevelValue() {
+		return bfsLevelValue;
+	}
+
+	/**
+	 * @param levelValue the levelValue to set
+	 */
+	private void setLevelValue(int levelValue) {
+		this.bfsLevelValue = levelValue;
 	}
 
 	public String toString(){		
