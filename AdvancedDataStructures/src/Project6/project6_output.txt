@@ -1,0 +1,364 @@
+
+Current working directory: C:\Users\J14688\git\AdvancedDataStructures\AdvancedDataStructures\project6_inputState.txt
+
+Number of ArrayList elements: 49
+
+Printing contents of States ArrayList:
+
+
+California
+Alabama
+Arizona
+Arkansas
+Colorado
+Connecticut
+Delaware
+Florida
+Georgia
+Idaho
+Illinois
+Indiana
+Iowa
+Kansas
+Kentucky
+Louisiana
+Maine
+Maryland
+Massachusetts
+Michigan
+Minnesota
+Mississippi
+Missouri
+Montana
+Nebraska
+Nevada
+New Hampshire
+New Jersey
+New Mexico
+New York
+North Carolina
+North Dakota
+Ohio
+Oklahoma
+Oregon
+Pennsylvania
+Rhode Island
+South Carolina
+South Dakota
+Tennessee
+Texas
+Utah
+Vermont
+Virginia
+Washington
+West Virginia
+Wisconsin
+Wyoming
+Size of visitedArray: 49
+
+Current working directory: C:\Users\J14688\git\AdvancedDataStructures\AdvancedDataStructures\project6_inputAdjacency.txt
+
+Graph ArrayList size: 49
+
+Printing contents of Graph ArrayList:
+
+State number: -1 
+LinkedList size: 0
+LinkedList contents: [] 
+
+State number: 1 
+LinkedList size: 3
+LinkedList contents: [35, 26, 3] 
+
+State number: 2 
+LinkedList size: 4
+LinkedList contents: [40, 22, 8, 9] 
+
+State number: 3 
+LinkedList size: 5
+LinkedList contents: [1, 26, 42, 5, 29] 
+
+State number: 4 
+LinkedList size: 6
+LinkedList contents: [23, 34, 41, 16, 22, 40] 
+
+State number: 5 
+LinkedList size: 7
+LinkedList contents: [48, 42, 3, 29, 34, 14, 25] 
+
+State number: 6 
+LinkedList size: 3
+LinkedList contents: [37, 19, 30] 
+
+State number: 7 
+LinkedList size: 3
+LinkedList contents: [18, 36, 28] 
+
+State number: 8 
+LinkedList size: 2
+LinkedList contents: [9, 2] 
+
+State number: 9 
+LinkedList size: 5
+LinkedList contents: [40, 2, 8, 38, 31] 
+
+State number: 10 
+LinkedList size: 6
+LinkedList contents: [45, 35, 26, 24, 48, 42] 
+
+State number: 11 
+LinkedList size: 5
+LinkedList contents: [47, 13, 23, 15, 12] 
+
+State number: 12 
+LinkedList size: 4
+LinkedList contents: [20, 11, 15, 33] 
+
+State number: 13 
+LinkedList size: 6
+LinkedList contents: [21, 39, 25, 23, 11, 47] 
+
+State number: 14 
+LinkedList size: 4
+LinkedList contents: [25, 5, 34, 23] 
+
+State number: 15 
+LinkedList size: 7
+LinkedList contents: [12, 11, 23, 40, 44, 46, 33] 
+
+State number: 16 
+LinkedList size: 3
+LinkedList contents: [4, 41, 22] 
+
+State number: 17 
+LinkedList size: 1
+LinkedList contents: [27] 
+
+State number: 18 
+LinkedList size: 4
+LinkedList contents: [36, 46, 44, 7] 
+
+State number: 19 
+LinkedList size: 5
+LinkedList contents: [27, 43, 30, 37, 6] 
+
+State number: 20 
+LinkedList size: 3
+LinkedList contents: [47, 12, 33] 
+
+State number: 21 
+LinkedList size: 4
+LinkedList contents: [32, 39, 13, 47] 
+
+State number: 22 
+LinkedList size: 4
+LinkedList contents: [40, 4, 16, 2] 
+
+State number: 23 
+LinkedList size: 8
+LinkedList contents: [13, 25, 14, 34, 4, 40, 15, 11] 
+
+State number: 24 
+LinkedList size: 4
+LinkedList contents: [10, 48, 32, 39] 
+
+State number: 25 
+LinkedList size: 6
+LinkedList contents: [39, 48, 5, 14, 23, 13] 
+
+State number: 26 
+LinkedList size: 5
+LinkedList contents: [35, 1, 10, 42, 3] 
+
+State number: 27 
+LinkedList size: 3
+LinkedList contents: [17, 43, 19] 
+
+State number: 28 
+LinkedList size: 3
+LinkedList contents: [36, 30, 7] 
+
+State number: 29 
+LinkedList size: 5
+LinkedList contents: [42, 5, 3, 34, 41] 
+
+State number: 30 
+LinkedList size: 5
+LinkedList contents: [43, 19, 6, 28, 36] 
+
+State number: 31 
+LinkedList size: 4
+LinkedList contents: [44, 40, 9, 38] 
+
+State number: 32 
+LinkedList size: 3
+LinkedList contents: [24, 39, 21] 
+
+State number: 33 
+LinkedList size: 5
+LinkedList contents: [20, 12, 15, 46, 36] 
+
+State number: 34 
+LinkedList size: 6
+LinkedList contents: [14, 5, 29, 41, 4, 23] 
+
+State number: 35 
+LinkedList size: 4
+LinkedList contents: [45, 10, 1, 26] 
+
+State number: 36 
+LinkedList size: 6
+LinkedList contents: [30, 33, 46, 18, 7, 28] 
+
+State number: 37 
+LinkedList size: 2
+LinkedList contents: [19, 6] 
+
+State number: 38 
+LinkedList size: 2
+LinkedList contents: [31, 9] 
+
+State number: 39 
+LinkedList size: 6
+LinkedList contents: [24, 32, 21, 48, 25, 13] 
+
+State number: 40 
+LinkedList size: 8
+LinkedList contents: [15, 23, 4, 22, 2, 9, 31, 44] 
+
+State number: 41 
+LinkedList size: 4
+LinkedList contents: [34, 29, 4, 16] 
+
+State number: 42 
+LinkedList size: 6
+LinkedList contents: [10, 48, 26, 5, 3, 29] 
+
+State number: 43 
+LinkedList size: 3
+LinkedList contents: [27, 19, 30] 
+
+State number: 44 
+LinkedList size: 5
+LinkedList contents: [18, 46, 15, 40, 31] 
+
+State number: 45 
+LinkedList size: 2
+LinkedList contents: [35, 10] 
+
+State number: 46 
+LinkedList size: 5
+LinkedList contents: [36, 33, 15, 44, 18] 
+
+State number: 47 
+LinkedList size: 4
+LinkedList contents: [20, 21, 13, 11] 
+
+State number: 48 
+LinkedList size: 6
+LinkedList contents: [24, 10, 39, 25, 5, 42] 
+
+
+Depth First Search:
+
+California - Red
+Oregon - Blue
+Washington - Red
+Idaho - White
+Nevada - Black
+Utah - Red
+Wyoming - Blue
+Montana - Red
+North Dakota - Blue
+South Dakota - White
+Minnesota - Red
+Iowa - Blue
+Nebraska - Red
+Colorado - White
+Arizona - Blue
+New Mexico - Black
+Oklahoma - Red
+Kansas - Blue
+Missouri - White
+Arkansas - Blue
+Texas - White
+Louisiana - Red
+Mississippi - White
+Tennessee - Red
+Kentucky - Blue
+Indiana - Red
+Michigan - Blue
+Wisconsin - White
+Illinois - Black
+Ohio - White
+West Virginia - Red
+Pennsylvania - Blue
+New York - Red
+Vermont - Blue
+New Hampshire - Red
+Maine - Blue
+Massachusetts - White
+Rhode Island - Red
+Connecticut - Blue
+New Jersey - White
+Delaware - Red
+Maryland - White
+Virginia - Black
+North Carolina - Blue
+Georgia - White
+Alabama - Blue
+Florida - Red
+South Carolina - Red
+
+
+
+Breadth First Search:
+
+California -  Color: Red - Level: 0
+Oregon -  Color: Blue - Level: 1
+Nevada -  Color: White - Level: 1
+Arizona -  Color: Blue - Level: 1
+Washington -  Color: Red - Level: 2
+Idaho -  Color: Black - Level: 2
+Utah -  Color: Red - Level: 3
+Colorado -  Color: White - Level: 4
+New Mexico -  Color: Black - Level: 4
+Montana -  Color: Red - Level: 5
+Wyoming -  Color: Blue - Level: 5
+Oklahoma -  Color: Red - Level: 6
+Kansas -  Color: Blue - Level: 6
+Nebraska -  Color: Red - Level: 6
+Texas -  Color: Blue - Level: 7
+North Dakota -  Color: Blue - Level: 8
+South Dakota -  Color: White - Level: 8
+Arkansas -  Color: White - Level: 9
+Missouri -  Color: Black - Level: 9
+Iowa -  Color: Blue - Level: 10
+Louisiana -  Color: Red - Level: 11
+Minnesota -  Color: Red - Level: 12
+Mississippi -  Color: Blue - Level: 13
+Tennessee -  Color: Red - Level: 13
+Kentucky -  Color: Blue - Level: 14
+Illinois -  Color: Red - Level: 14
+Wisconsin -  Color: White - Level: 15
+Alabama -  Color: White - Level: 16
+Georgia -  Color: Blue - Level: 17
+North Carolina -  Color: White - Level: 17
+Virginia -  Color: Black - Level: 17
+Indiana -  Color: White - Level: 18
+West Virginia -  Color: Red - Level: 18
+Ohio -  Color: Black - Level: 18
+Michigan -  Color: Red - Level: 19
+Florida -  Color: Red - Level: 20
+South Carolina -  Color: Red - Level: 21
+Maryland -  Color: Blue - Level: 22
+Pennsylvania -  Color: White - Level: 23
+Delaware -  Color: Red - Level: 24
+New York -  Color: Red - Level: 25
+New Jersey -  Color: Blue - Level: 25
+Vermont -  Color: Blue - Level: 26
+Massachusetts -  Color: White - Level: 26
+Connecticut -  Color: Blue - Level: 26
+New Hampshire -  Color: Red - Level: 27
+Rhode Island -  Color: Red - Level: 28
+Maine -  Color: Blue - Level: 29

@@ -1,3 +1,4 @@
+package Project6;
 import java.io.*;
 import java.util.*;
 
@@ -34,6 +35,8 @@ public class Project6 {
 		
 		System.out.println("\n\n\nBreadth First Search:\n");
 		Arrays.fill(visitedArray, false);
+		
+		stateGraph.resetColors();
 		
 		stateGraph.breadthFirstSearch(stateGraph, 1, visitedArray, statesArray);
 		
@@ -75,19 +78,28 @@ class Graph{
 		
 	}
 	
+	public void resetColors(){
+		Iterator<GraphNode> it = graphNodeArray.iterator();
+		
+		while(it.hasNext()){
+			it.next().setColorValue(-1);
+		}
+	}
+	
 	/**
 	 * Populate graphNodeArray with Strings from inputArray.
 	 * 
 	 * @param inputArray ArrayList of String
 	 */
 	public void populateGraphArraywithStateArray(ArrayList<String> inputArray){
-				
+		
 		Iterator<String> it = inputArray.iterator();
 		if (it.hasNext()){
 			it.next();
 		} else {
 			return;
 		}	
+		
 		
 		while (it.hasNext()){
 //			System.out.println(it.next().toString());
@@ -97,15 +109,58 @@ class Graph{
 		}
 	}
 	
+	public String colorGraphNode(Graph graphObject, int index){
+		
+		ArrayList<Integer> colorArray = new ArrayList<Integer>();
+		
+		if (graphObject.getGraphNode(index).getColorValue() == -1){
+			//iterate through list
+			Iterator<Integer> it = graphObject.getGraphNode(index).getAdjacentStates().iterator();
+			
+			while (it.hasNext()){
+				
+				colorArray.add(graphObject.getGraphNode(it.next()).getColorValue());
+				
+			}
+			
+			if (!colorArray.contains(1)){
+				graphObject.getGraphNode(index).setColorValue(1);
+				return "Red";
+			}
+			
+			if (!colorArray.contains(2)){
+				graphObject.getGraphNode(index).setColorValue(2);
+				return "Blue";
+			}
+			
+			if (!colorArray.contains(3)){
+				graphObject.getGraphNode(index).setColorValue(3);
+				return "White";
+			}
+			
+			if (!colorArray.contains(4)){
+				graphObject.getGraphNode(index).setColorValue(4);
+				return "Black";
+			}
+			
+			colorArray.clear();
+			
+		}
+		
+		return "ERROR";
+	}
+	
 	public void depthFirstSearch(Graph graphObject, int startState, boolean[] visitedArray, ArrayList<String> statesArray){
 		
 		if (!visitedArray[startState]){
 			visitedArray[startState] = true; //visited == FALSE
+			
 		} else {
 			return; //visited == TRUE; base case
 		}
 		
 		System.out.print(graphObject.getGraphNode(startState).toStringStateOnly(statesArray));
+		System.out.println(colorGraphNode(graphObject, startState));
 		
 		Iterator it = graphObject.getGraphNode(startState).getAdjacentStates().iterator();
 	
@@ -140,7 +195,8 @@ class Graph{
 				addLevel = false;
 			}
 
-			System.out.println(n.toStringStateOnly(statesArray) + "Level: " + levelArray[n.getNodeValue()]);
+//			System.out.println("Integer: " + n.getNodeValue());
+			System.out.println(n.toStringStateOnly(statesArray) + " Color: " + colorGraphNode(graphObject, n.getNodeValue()) + " - Level: " + levelArray[n.getNodeValue()]);
 			
 			GraphNode child = null;
 			
@@ -169,8 +225,6 @@ class Graph{
 		
 	}
 	
-	
-	
 }
 
 
@@ -184,6 +238,7 @@ class GraphNode{
 	public GraphNode(int nodeValue){
 		this.nodeValue = nodeValue;
 		this.adjacentStates = new LinkedList<Integer>();
+		this.colorValue = -1;
 	}
 	
 	/**
@@ -255,7 +310,7 @@ class GraphNode{
 	
 	public String toStringStateOnly(ArrayList<String> statesArray){		
 		
-		return statesArray.get(this.nodeValue) + " -> ";
+		return statesArray.get(this.nodeValue) + " - ";
 		
 	}
 
