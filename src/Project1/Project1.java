@@ -1,9 +1,17 @@
 package Project1;
+
 import java.io.*;
 import java.util.*;
 
 /**
+ * 
+ * The Project1 class is averages a group of scores and classifies each score.
+ * 
+ * @param int line of scores
+ * @return string simple output from the command line
+ * 
  * @author Kevin Kuo
+ * @version 1.0
  *
  */
 public class Project1 {
