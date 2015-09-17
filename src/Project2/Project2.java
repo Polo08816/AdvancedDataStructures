@@ -6,8 +6,13 @@ import java.util.*;
 
 
 /**
+ * The Project2 contains a set of classes to implement a banking system and calculates a balance at the end of each month.
+ * 
+ * @param file that represents a table of data
+ * @return account balance at the end of each month
+ * 
  * @author Kevin Kuo
- *
+ * @version 1.0
  */
 public class Project2 {
 
