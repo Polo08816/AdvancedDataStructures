@@ -1,5 +1,6 @@
 package Project2;
 
+
 import java.io.*;
 import java.util.*;
 
@@ -63,7 +64,7 @@ public class Project2 {
 			
 			
 			try {
-				bw.write(ba.getName() + seperator + ba.getAccountNumber() + seperator + ba.getPhoneNumber() + seperator + ba.getSocialSecurityNumber() + seperator + ba.getOpenBalance() + seperator + ba.getCloseBalance());
+				bw.write(ba.getName() + seperator + ba.getAccountNumber() + seperator + ba.getPhoneNumber() + seperator + ba.getSocialSecurityNumber() + seperator + ba.getOpenBalance() + seperator + String.format("%.2f" , ba.getCloseBalance()));
 				bw.newLine();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
