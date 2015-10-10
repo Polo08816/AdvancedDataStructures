@@ -1,11 +1,11 @@
 Enter command or line: 
 $insert
 Enter lines to insert: 
-Golf is indeed the fastest-growing game 
+Golf is indeed the fastest-growing game
 Enter command or line: 
 on an international level.
 Enter command or line: 
-A life long game for 
+A life long game for
 Enter command or line: 
 every golf addict
 Enter command or line: 
@@ -13,45 +13,48 @@ In the United States alone there are
 Enter command or line: 
 over twenty-five millions golfers,
 Enter command or line: 
-playing over 15,000 courses. 
+playing over 15,000 courses.
 Enter command or line: 
 Once considered the game of the wealthy,
 Enter command or line: 
-golf is changing its image. 
+golf is changing its image.
 Enter command or line: 
-Exclusive clubs are 
+Exclusive cubs are
 Enter command or line: 
-no longer the mode of the day, 
+no longer the mode of the day,
 Enter command or line: 
 as architects are building
 Enter command or line: 
 courses for the public.
 Enter command or line: 
-$delete 3 4
+$delete 3,4
+Enter command or line: 
+print
+Invalid command.  Enter a valid command.
 Enter command or line: 
 $print
-Line 1 : Golf is indeed the fastest-growing game 
+Line 1 : Golf is indeed the fastest-growing game
 Line 2 : on an international level.
 Line 3 : In the United States alone there are
 Line 4 : over twenty-five millions golfers,
-Line 5 : playing over 15,000 courses. 
+Line 5 : playing over 15,000 courses.
 Line 6 : Once considered the game of the wealthy,
-Line 7 : golf is changing its image. 
-Line 8 : Exclusive clubs are 
-Line 9 : no longer the mode of the day, 
+Line 7 : golf is changing its image.
+Line 8 : Exclusive cubs are
+Line 9 : no longer the mode of the day,
 Line 10 : as architects are building
 Line 11 : courses for the public.
 Enter command or line: 
-$delete 3 2
+$delete 3,2
 deleteLines: incorrect argument(s): first line # > last line # AND/OR line number less than 1
 Enter command or line: 
 $line 3
 Line SET: 3 : In the United States alone there are
-Line 1 : Golf is indeed the fastest-growing game 
+Line 1 : Golf is indeed the fastest-growing game
 Line 2 : on an international level.
 Line 3 : In the United States alone there are
 Line 4 : over twenty-five millions golfers,
-Line 5 : playing over 15,000 courses. 
+Line 5 : playing over 15,000 courses.
 Line 6 : Once considered the game of the wealthy,
 Enter command or line: 
 insert
@@ -61,26 +64,26 @@ $search Woods
 String searched: Woods  NOT FOUND!
 Enter command or line: 
 $line 1
-Line SET: 1 : Golf is indeed the fastest-growing game 
-Line 1 : Golf is indeed the fastest-growing game 
+Line SET: 1 : Golf is indeed the fastest-growing game
+Line 1 : Golf is indeed the fastest-growing game
 Line 2 : on an international level.
 Line 3 : In the United States alone there are
 Line 4 : over twenty-five millions golfers,
 Enter command or line: 
 $insert
-Tiger Woods is a famous golfer
+Jordan Spieth is a young golfer
 Enter command or line: 
-as well as a wealthy person
+as well as a raising star
 Enter command or line: 
-$search Tiger
-Line 1 : Tiger Woods is a famous golfer
+$search Spieth
+Line 1 : Jordan Spieth is a young golfer
 Enter command or line: 
 Can I input a line of text here?
 Invalid command.  Enter a valid command.
 Enter command or line: 
-$print 2 5
-Line 2 : Golf is indeed the fastest-growing game 
-Line 3 : as well as a wealthy person
+$print 2,5
+Line 2 : Golf is indeed the fastest-growing game
+Line 3 : as well as a raising star
 Line 4 : on an international level.
 Line 5 : In the United States alone there are
 Enter command or line: 
@@ -88,16 +91,16 @@ $line 8
 Line SET: 8 : Once considered the game of the wealthy,
 Line 5 : In the United States alone there are
 Line 6 : over twenty-five millions golfers,
-Line 7 : playing over 15,000 courses. 
+Line 7 : playing over 15,000 courses.
 Line 8 : Once considered the game of the wealthy,
-Line 9 : golf is changing its image. 
-Line 10 : Exclusive clubs are 
-Line 11 : no longer the mode of the day, 
+Line 9 : golf is changing its image.
+Line 10 : Exclusive cubs are
+Line 11 : no longer the mode of the day,
 Enter command or line: 
 $insert
 When you are out on the golf course,
 Enter command or line: 
-it is a different world. The air is
+it is a different world.  The air is
 Enter command or line: 
 clear, and the world is a calmer place
 Enter command or line: 
@@ -112,22 +115,22 @@ $display
 Invalid command.  Enter a valid command.
 Enter command or line: 
 $print
-Line 1 : Tiger Woods is a famous golfer
-Line 2 : Golf is indeed the fastest-growing game 
-Line 3 : as well as a wealthy person
+Line 1 : Jordan Spieth is a young golfer
+Line 2 : Golf is indeed the fastest-growing game
+Line 3 : as well as a raising star
 Line 4 : on an international level.
 Line 5 : In the United States alone there are
 Line 6 : over twenty-five millions golfers,
-Line 7 : playing over 15,000 courses. 
+Line 7 : playing over 15,000 courses.
 Line 8 : When you are out on the golf course,
-Line 9 : it is a different world. The air is
+Line 9 : it is a different world.  The air is
 Line 10 : clear, and the world is a calmer place
 Line 11 : on the golf course, no matter how frustrated
 Line 12 : one gets.
 Line 13 : Once considered the game of the wealthy,
-Line 14 : golf is changing its image. 
-Line 15 : Exclusive clubs are 
-Line 16 : no longer the mode of the day, 
+Line 14 : golf is changing its image.
+Line 15 : Exclusive cubs are
+Line 16 : no longer the mode of the day,
 Line 17 : as architects are building
 Line 18 : courses for the public.
 Enter command or line: 
