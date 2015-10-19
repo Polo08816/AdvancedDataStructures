@@ -1,11 +1,18 @@
 package Project4;
+
 import java.io.*;
 import java.util.*;
 
 
 /**
+ * The Project4 contains a set of methods that implement a line editor.  These include critical functions such as inserting a line, deleting a line,
+ * setting the cursor to a particular line, printing a user specified range of lines, and searching for an expression.
+ * 
+ * @param <commands> and/or <argument>s
+ * @return error or set of lines based on command
+ * 
  * @author Kevin Kuo
- *
+ * @version 1.0
  */
 public class Project4 {
 
