@@ -1,7 +1,5 @@
 package OptionalProject2;
-/**
- * 
- */
+
 
 
 import java.io.*;
@@ -9,25 +7,22 @@ import java.util.*;
 
 
 /**
- * @author Kevin Kuo
- *	
- * To Do:
+ * The OptionalProject1 creates a text file of randomly generated integers and compares the run time
+ * of insertion, quick, merge, and heap sort.
  * 
- * 1.  Generate a file of 20,000 random numbers.
- * 2.  Read random numbers from file into <file structure>
- * 3.  Analyze system time for the following algorithms:
- * 		a.	Insertion sort x
- * 		b.	Quick sort x
- * 		c.	Merge sort
- * 		d.  Heap sort
+ * @param None.
+ * @return Run time of algorithm.
+ * 
+ * @author Kevin Kuo
+ * @version 1.0
  */
-public class OptionalProject2 {
+public class OptionalProject1 {
 
 	/**
 	 * @param args
 	 */
 	
-	private final static String outputFileName = "OptionalProject2_Input.txt";
+	private final static String outputFileName = "OptionalProject1_Input.txt";
 	
 	
 	public static void main(String[] args) {

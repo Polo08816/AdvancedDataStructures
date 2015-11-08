@@ -1,0 +1,23 @@
+Output file complete.
+
+Current working directory: C:\Users\J14688\git\AdvancedDataStructures\OptionalProject1_Input.txt
+
+Testing INSERTION sort.
+Begin: 1447013696213
+End: 1447013696351
+Total: 138
+
+Testing QUICK sort.
+Begin: 1447013696351
+End: 1447013696360
+Total: 9
+
+Testing MERGE sort.
+Begin: 1447013696360
+End: 1447013696364
+Total: 4
+
+Testing HEAP sort.
+Begin: 1447013696364
+End: 1447013696370
+Total: 6
