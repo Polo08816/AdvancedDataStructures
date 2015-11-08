@@ -1,10 +1,10 @@
 Enter a list of integers separated by a comma: 
 
-60, 20, 100, 35, 15, 200, 75, 150, 6, 17, 40
-T1 In-order traversal: 6, 15, 17, 20, 35, 40, 60, 75, 100, 150, 200, 
-T1 leaf count: 5
+60, 20, 100, 35, 15, 200, 75, 150, 6, 1, 40
+T1 In-order traversal: 1, 6, 15, 20, 35, 40, 60, 75, 100, 150, 200, 
+T1 leaf count: 4
 
-T2 Post-order traversal: 150, 200, 75, 100, 40, 35, 17, 6, 15, 20, 60, 
+T2 Post-order traversal: 150, 200, 75, 100, 40, 35, 1, 6, 15, 20, 60, 
 
 Compare T1 to T2: false
 
@@ -16,7 +16,7 @@ Enter a list of integers separated by a comma:
 60, 100, 20, 15, 35, 75, 200, 6, 17, 40, 150
 
 
-Compare T1 to T3: true
+Compare T1 to T3: false
 Delete 15 from T3... Deleting '15' done. 
 T3 In-order traversal: 6, 17, 20, 35, 40, 60, 75, 100, 150, 200, 
 5th node of T3: 40

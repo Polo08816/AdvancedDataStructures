@@ -1,23 +1,18 @@
 package Project5;
+
 import java.io.*;
 import java.util.*;
 
 /**
+ * The Project5 constructs a binary search tree from a sequence of integers and allows
+ * the user to perform operations on the binary search tree data structure such as
+ * count leaf notes, swap nodes, inorder/postorder printing, and compare trees.
+ * 
+ * @param sequence of integers
+ * @return sequence of integers or true/false comparison
+ * 
  * @author Kevin Kuo
- * 
- * 
- * To Do List:
- * 
- * 1.  add
- * 2.  search
- * 6.  count leaf nodes
- * 5.  count nodes
- * 9.  copy BSTree
- * 3.  print in order
- * 4.  print post order
- * 7.  delete
- * 8.  swap
- * 
+ * @version 1.0
  *
  */
 
