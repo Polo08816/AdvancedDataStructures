@@ -1,5 +1,5 @@
 
-Current working directory: C:\Users\J14688\git\AdvancedDataStructures\AdvancedDataStructures\project6_inputState.txt
+Current working directory: C:\Users\J14688\git\AdvancedDataStructures\project6_inputState.txt
 
 Number of ArrayList elements: 49
 
@@ -56,7 +56,7 @@ Wisconsin
 Wyoming
 Size of visitedArray: 49
 
-Current working directory: C:\Users\J14688\git\AdvancedDataStructures\AdvancedDataStructures\project6_inputAdjacency.txt
+Current working directory: C:\Users\J14688\git\AdvancedDataStructures\project6_inputAdjacency.txt
 
 Graph ArrayList size: 49
 
